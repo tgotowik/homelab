@@ -8,11 +8,11 @@
   loop_control:
     loop_var: vars_file
 
-- name: Install vaultwarden
+- name: Configure template
   ansible.builtin.include_tasks:
-    file: vaultwarden/main.yml
+    file: template/main.yml
     apply:
       tags:
-        - vaultwarden
+        - template
   tags:
-    - vaultwarden
+    - template

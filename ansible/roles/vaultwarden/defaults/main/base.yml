@@ -1,2 +1,4 @@
 ---
 # vars here
+
+int_vaultwarden_port: 80

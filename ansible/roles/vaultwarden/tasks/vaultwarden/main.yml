@@ -1,0 +1,16 @@
+---
+- name: Ensure vaultwarden compose dir exists
+  ansible.builtin.file:
+    path: /opt/vaultwarden
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy vaultwarden docker-compose
+  ansible.builtin.template:
+    src: opt/vaultwarden/docker-compose.yml.j2
+    dest: /opt/vaultwarden/docker-compose.yml
+    group: root
+    owner: root
+    mode: "0644"

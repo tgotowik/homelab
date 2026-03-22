@@ -2,15 +2,55 @@
 - name: Onboarding
   hosts: all
   remote_user: root
+  tags: onboard
   roles:
-    - { role: onboard, tags: ['onboard', 'setup'] }
+    - onboard
 
-- name: All roles
+- name: Base
   hosts: all
   become: true
+  tags: base
   roles:
-    - { role: base,    tags: ['base', 'setup'] }
-    - { role: vaultwarden,  tags: ['vaultwarden'] }
-    - { role: nextcloud,  tags: ['nextcloud'] }
-    - { role: immich,  tags: ['immich'] }
-    - { role: jellyfin,  tags: ['jellyfin'] }
+    - base
+
+- name: Docker 
+  hosts: all
+  become: true
+  tags: docker
+  roles:
+    - docker
+
+- name: Install caddy
+  hosts: caddy
+  become: true
+  tags: caddy
+  roles:
+    - caddy
+
+- name: Install vaultwarden
+  hosts: vaultwarden
+  become: true
+  tags: vaultwarden
+  roles:
+    - vaultwarden
+
+- name: Install nextcloud
+  hosts: nextcloud
+  become: true
+  tags: nextcloud
+  roles:
+    - nextcloud
+
+- name: Install immich
+  hosts: immich
+  become: true
+  tags: immich
+  roles:
+    - immich
+
+- name: Install jellyfin
+  hosts: jellyfin
+  become: true
+  tags: jellyfin
+  roles:
+    - jellyfin
