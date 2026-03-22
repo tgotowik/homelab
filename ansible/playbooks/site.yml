@@ -10,7 +10,7 @@
   become: true
   roles:
     - { role: base,    tags: ['base', 'setup'] }
-    - { role: docker,  tags: ['vaultwarden'] }
-    - { role: docker,  tags: ['nextcloud'] }
-    - { role: docker,  tags: ['immich'] }
-    - { role: docker,  tags: ['jellyfin'] }
+    - { role: vaultwarden,  tags: ['vaultwarden'] }
+    - { role: nextcloud,  tags: ['nextcloud'] }
+    - { role: immich,  tags: ['immich'] }
+    - { role: jellyfin,  tags: ['jellyfin'] }

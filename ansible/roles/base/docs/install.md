@@ -1,11 +1,11 @@
 # Installation
 
 Installs:
-    - updates
+    - unattended-upgrades
+    - sendmail via smtp
     - hostname
-    - drives
 
-```ansible-playbook -i inventory/inventory.ini playbooks/1_base.yml -l main```
+```ansible-playbook -i inventory/inventory.ini playbooks/site.yml -t base -l vaultwarden```
 
 ### unattented-upgrades
 - check with ```unattended-upgrades --dry-run --debug```

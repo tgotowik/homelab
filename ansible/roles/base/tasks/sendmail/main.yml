@@ -10,7 +10,3 @@
     owner: root
     group: root
     mode: "0600"
-
-- name: Include unattended upgrades
-  ansible.builtin.include_tasks: unattended-upgrades.yml
-  when: boolean_base_unattended_upgrades

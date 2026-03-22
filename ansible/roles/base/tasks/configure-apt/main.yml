@@ -1,4 +1,10 @@
 ---
+- name: Update and upgrade packages
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+    update_cache: true
+
 - name: Install unattended upgrades packages
   ansible.builtin.package:
     name: "{{ list_base_unattended_upgrades }}"

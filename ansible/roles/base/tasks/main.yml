@@ -8,40 +8,20 @@
   loop_control:
     loop_var: vars_file
 
-- name: Install updates
+- name: Configure apt
   ansible.builtin.include_tasks:
-    file: apt-update/main.yml
+    file: configure-apt/main.yml
     apply:
       tags:
-        - apt-update
+        - configure-apt
   tags:
-    - apt-update
+    - configure-apt
 
-- name: Configure server services
+- name: Configure sendmail
   ansible.builtin.include_tasks:
-    file: server-services/main.yml
+    file: sendmail/main.yml
     apply:
       tags:
-        - configure-server-services
+        - sendmail
   tags:
-    - configure-server-services
-
-- name: Configure external drives
-  ansible.builtin.include_tasks:
-    file: external-drives/main.yml
-    apply:
-      tags:
-        - configure-external-drives
-  when: boolean_base_external_drives
-  tags:
-    - configure-external-drives
-
-- name: Configure dropbear
-  ansible.builtin.include_tasks:
-    file: dropbear/main.yml
-    apply:
-      tags:
-        - configure-dropbear
-  when: boolean_base_dropbear
-  tags:
-    - configure-dropbear
+    - sendmail
