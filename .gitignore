@@ -1,3 +1,3 @@
 # ignore data
-.vault_pass
-inventory/group_vars/main/vault
+ansible/.vault_pass
+ansible/inventory/group_vars/main/vault
