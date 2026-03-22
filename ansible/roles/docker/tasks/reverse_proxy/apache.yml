@@ -1,0 +1,15 @@
+---
+- name: Copy apache2 tgotowik.de.conf
+  ansible.builtin.template:
+    src: etc/apache2/sites-available/tgotowik.de.conf.j2
+    dest: /etc/apache2/sites-available/tgotowik.de.conf
+    owner: root
+    group: root
+    mode: "0640"
+
+- name: Enable site tgotowik.de
+  ansible.builtin.file:
+    src: /etc/apache2/sites-available/tgotowik.de.conf
+    dest: /etc/apache2/sites-enabled/tgotowik.de.conf
+    state: link
+  notify: restart apache2

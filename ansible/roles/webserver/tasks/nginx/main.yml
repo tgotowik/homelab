@@ -1,0 +1,6 @@
+---
+- name: Install webserver packages
+  ansible.builtin.package:
+    name: "{{ list_webserver_nginx_packages }}"
+    state: present
+    update_cache: true

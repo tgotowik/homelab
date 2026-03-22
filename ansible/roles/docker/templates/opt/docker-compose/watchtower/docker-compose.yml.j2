@@ -1,0 +1,19 @@
+---
+services:
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_LABEL_ENABLE=true
+      - DOCKER_API_VERSION=1.44
+      - WATCHTOWER_POLL_INTERVAL=86400
+      - WATCHTOWER_NOTIFICATIONS=email
+      - WATCHTOWER_NOTIFICATION_EMAIL_FROM={{ str_from_mail_address }}
+      - WATCHTOWER_NOTIFICATION_EMAIL_TO={{ str_base_to_mail_address }}
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER=smtp.gmail.com
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT=587
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER={{ str_smtp_login }}
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD={{ str_smtp_password }}
+      - WATCHTOWER_NOTIFICATION_EMAIL_DELAY=2
+    restart: unless-stopped

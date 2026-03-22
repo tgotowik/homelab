@@ -1,0 +1,8 @@
+---
+- name: Copy sudoers file
+  ansible.builtin.template:
+    src: etc/sudoers.d/tgotowik.j2
+    dest: /etc/sudoers.d/tgotowik
+    mode: "0440"
+    group: root
+    owner: root

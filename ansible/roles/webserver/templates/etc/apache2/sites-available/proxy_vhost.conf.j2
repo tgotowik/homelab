@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+    ServerName {{ webserver_domains[0] }}
+    ServerAlias {% for d in webserver_domains[1:] %} {{ d }}{% endfor %}
+
+    ProxyPreserveHost On
+    {% for domain, backend in webserver_proxy_backends.items() %}
+    <If "%{HTTP_HOST} == '{{ domain }}'">
+        ProxyPass / {{ backend }}/
+        ProxyPassReverse / {{ backend }}/
+    </If>
+    {% endfor %}
+
+    ErrorLog ${APACHE_LOG_DIR}/server-error.log
+    CustomLog ${APACHE_LOG_DIR}/server-access.log combined
+</VirtualHost>

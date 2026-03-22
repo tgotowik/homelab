@@ -1,0 +1,17 @@
+defaults
+auth on
+tls on
+tls_starttls on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+syslog LOG_MAIL
+
+account gmail
+host smtp.gmail.com
+port 587
+from {{ str_from_mail_address }}
+user {{ str_smtp_login }}
+password {{ str_smtp_password }}
+allow_from_override off
+set_from_header on
+
+account default : gmail

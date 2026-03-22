@@ -1,0 +1,15 @@
+---
+- name: Copy rsync backup to synology script
+  ansible.builtin.template:
+    src: usr/local/sbin/backup-to-synology.j2
+    dest: /usr/local/sbin/backup-to-synology
+    group: root
+    owner: root
+    mode: "0700"
+
+- name: Install cron for backup script
+  ansible.builtin.cron:
+    name: "backup to synology"
+    minute: 0
+    hour: 3
+    job: /usr/local/sbin/backup-to-synology

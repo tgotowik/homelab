@@ -1,0 +1,23 @@
+---
+# vars here
+boolean_base_external_drives: false
+
+boolean_base_dropbear: false
+
+
+boolean_base_unattended_upgrades: true
+
+list_base_unattended_upgrades:
+  - unattended-upgrades
+  - needrestart
+
+list_base_server_services:
+  - htop
+  - nano
+  - msmtp
+  - msmtp-mta
+  - bsd-mailx
+
+# str_base_to_mail_address: 
+# str_base_mail_login: 
+# str_from_mail_address: 

@@ -1,0 +1,10 @@
+---
+- name: Copy ddclient conf
+  ansible.builtin.template:
+    src: "etc/ddclient.conf.j2"
+    dest: "/etc/ddclient.conf"
+    backup: true
+    mode: "0600"
+    group: root
+    owner: root
+  notify: restart ddclient

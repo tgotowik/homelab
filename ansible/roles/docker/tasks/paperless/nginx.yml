@@ -1,0 +1,15 @@
+---
+- name: Copy paperless.tgotowik.de.conf
+  ansible.builtin.template:
+    src: etc/nginx/sites-available/paperless.tgotowik.de.conf.j2
+    dest: /etc/nginx/sites-available/paperless.tgotowik.de.conf
+    owner: root
+    group: root
+    mode: "0640"
+
+- name: Enable site paperless.tgotowik.de
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/paperless.tgotowik.de.conf
+    dest: /etc/nginx/sites-enabled/paperless.tgotowik.de.conf
+    state: link
+  notify: restart nginx

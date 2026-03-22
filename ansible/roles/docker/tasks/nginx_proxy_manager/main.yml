@@ -1,0 +1,16 @@
+---
+- name: Ensure nginx-proxy-manager compose dir exists
+  ansible.builtin.file:
+    path: /opt/docker-compose/nginx-proxy-manager
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy nginx-proxy-manager docker-compose
+  ansible.builtin.template:
+    src: opt/docker-compose/nginx-proxy-manager/docker-compose.yml.j2
+    dest: /opt/docker-compose/nginx-proxy-manager/docker-compose.yml
+    group: root
+    owner: root
+    mode: "0644"

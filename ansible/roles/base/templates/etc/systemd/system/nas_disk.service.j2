@@ -1,0 +1,13 @@
+[Unit]
+Description=Mount My Nas Disk
+Requires=dev-sdb1.device
+After=dev-sdb1.device
+
+[Service]
+Type=oneshot
+ExecStart=/bin/mount -o uid=www-data,gid=root /dev/disk/by-uuid/A2008DDF008DBB35 /mnt/Drive
+TimeoutSec=30
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

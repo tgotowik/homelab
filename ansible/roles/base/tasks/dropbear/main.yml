@@ -1,0 +1,63 @@
+---
+# /etc/dropbear/initramfs/dropbear.conf sed DROPBEAR_OPTIONS="-I 180 -j -k -p 22 -s -c /usr/bin/cryptroot-unlock"
+# echo "{{ ansible_ssh_public_keys }}" append to /etc/dropbear/initramfs/authorized_keys
+# IP=192.168.178.55::192.168.178.1:255.255.255.0:homeserver append to /etc/initramfs-tools/initramfs.conf
+# update-initramfs -u
+
+- name: Install dropbear
+  ansible.builtin.package:
+    name: dropbear
+    state: present
+
+- name: Configure dropbear conf
+  ansible.builtin.lineinfile:
+    path: /etc/dropbear/initramfs/dropbear.conf
+    regexp: "^DROPBEAR_OPTIONS="
+    line: "DROPBEAR_OPTIONS='-I 180 -j -k -p 2222 -s -c /usr/bin/cryptroot-unlock'"
+    create: yes
+    backup: yes
+  register: dropbear_conf
+
+- name: Add public key to dropbear
+  ansible.builtin.template:
+    src: etc/dropbear/initramfs/authorized_keys.j2
+    dest: /etc/dropbear/initramfs/authorized_keys
+    mode: "0600"
+    owner: root
+    group: root
+  register: dropbear_key
+
+- name: Copy /etc/default/dropbear conf
+  ansible.builtin.template:
+    src: etc/default/dropbear.j2
+    dest: /etc/default/dropbear
+    mode: "0644"
+    owner: root
+    group: root
+  register: dropbear_key
+
+- name: disable dropbear daemon
+  ansible.builtin.service:
+    name: dropbear.service
+    state: stopped
+    enabled: no
+
+- name: Copy initramfs config
+  ansible.builtin.template:
+    src: etc/initramfs-tools/initramfs.conf.j2
+    dest: /etc/initramfs-tools/initramfs.conf
+    mode: "0644"
+    owner: root
+    group: root
+  register: initramfs_ip
+
+- name: Update initramfs
+  ansible.builtin.command: update-initramfs -u
+  when: dropbear_conf.changed or dropbear_key.changed or initramfs_ip.changed
+
+
+
+
+
+
+

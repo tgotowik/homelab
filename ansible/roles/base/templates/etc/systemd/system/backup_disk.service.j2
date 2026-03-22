@@ -1,0 +1,13 @@
+[Unit]
+Description=Backup disk unit
+Requires=dev-sdc1.device
+After=dev-sdc1.device
+
+[Service]
+Type=oneshot
+ExecStart=/bin/mount /dev/disk/by-uuid/fac1c480-3294-4694-8daf-e6cb85ffd444 /mnt/Backup
+TimeoutSec=30
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

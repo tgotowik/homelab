@@ -1,0 +1,27 @@
+---
+- name: Ensure immich compose dir exists
+  ansible.builtin.file:
+    path: /opt/docker-compose/immich
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy immich docker-compose file
+  ansible.builtin.template:
+    src: opt/docker-compose/immich/docker-compose.yml.j2
+    dest: /opt/docker-compose/immich/docker-compose.yml
+    group: root
+    owner: root
+    mode: "0644"
+
+- name: Copy immich env file
+  ansible.builtin.template:
+    src: opt/docker-compose/immich/.env.j2
+    dest: /opt/docker-compose/immich/.env
+    group: root
+    owner: root
+    mode: "0644"
+
+- name: Include webserver-specific tasks
+  ansible.builtin.include_tasks: "{{ str_webserver_engine }}.yml"

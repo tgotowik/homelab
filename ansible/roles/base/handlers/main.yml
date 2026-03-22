@@ -1,0 +1,17 @@
+---
+- name: reboot server
+  ansible.builtin.reboot:
+    reboot_timeout: 360
+    test_command: whoami
+
+- name: reload nas disk
+  ansible.builtin.service:
+    name: nas_disk
+    state: reloaded
+    enabled: yes
+
+- name: reload backup disk
+  ansible.builtin.service:
+    name: backup_disk
+    state: reloaded
+    enabled: yes

@@ -1,0 +1,33 @@
+---
+- name: Include role variables
+  ansible.builtin.include_tasks: "include_vars.yml"
+  tags:
+    - always
+  loop:
+    - "{{ ansible_os_family }}.yml" # e.g. Debian for ubuntu and debian
+  loop_control:
+    loop_var: vars_file
+
+- name: Install onboarding packages
+  ansible.builtin.package:
+    name: "{{ list_onboarding_packages }}"
+    state: latest
+    update_cache: yes
+
+- name: Configure sudo
+  ansible.builtin.include_tasks:
+    file: configure_sudo/main.yml
+    apply:
+      tags:
+        - configure_sudo
+  tags:
+    - configure_sudo
+
+- name: Configure ssh access
+  ansible.builtin.include_tasks:
+    file: configure-ssh/main.yml
+    apply:
+      tags:
+        - configure-ssh
+  tags:
+    - configure-ssh

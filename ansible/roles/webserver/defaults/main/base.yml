@@ -1,0 +1,32 @@
+---
+# vars here
+list_webserver_apache_packages:
+  - apache2
+  - certbot
+  - python3-certbot-apache
+  - ddclient
+
+list_webserver_nginx_packages:
+  - nginx
+  - certbot
+  - python3-certbot-nginx
+  - ddclient
+
+# str_webserver_engine: "" nginx, or apache
+
+# str_webserver_ddclient_login: ""
+# str_webserver_ddclient_password: ""
+
+list_webserver_domains:
+  - tgotowik.de
+  - nas.tgotowik.de
+  - bw.tgotowik.de
+  - immich.tgotowik.de
+  - jf.tgotowik.de
+
+webserver_proxy_backends:
+  tgotowik.de: "http://127.0.0.1:80"
+  nas.tgotowik.de: "http://127.0.0.1:8080"
+  bw.tgotowik.de: "http://127.0.0.1:8082"
+
+webserver_admin_email: "webmaster@tgotowik.de"

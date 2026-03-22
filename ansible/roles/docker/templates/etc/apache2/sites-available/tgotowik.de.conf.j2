@@ -1,0 +1,43 @@
+server {
+    listen 80;
+    server_name tgotowik.de www.tgotowik.de;
+
+    return 301 https://$host$request_uri;
+}
+
+# HTTPS Serverblock
+server {
+    listen 443 ssl http2;
+    server_name tgotowik.de www.tgotowik.de;
+
+    root /var/www/html;
+    index index.html index.htm index.php;
+
+    # TLS-Konfiguration (automatisch von certbot übernommen, falls genutzt)
+    ssl_certificate /etc/letsencrypt/live/tgotowik.de/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/tgotowik.de/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+
+    # Logging
+    access_log /var/log/nginx/tgotowik.de-access.log;
+    error_log  /var/log/nginx/tgotowik.de-error.log;
+
+    # Statische Dateien ausliefern
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    # Optional: PHP-Unterstützung (falls du z. B. PHP-Seiten hast)
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php8.2-fpm.sock; # ggf. Version anpassen
+    }
+
+    # Sicherheit & Performance (optional, aber empfohlen)
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-Content-Type-Options "nosniff";
+    add_header X-XSS-Protection "1; mode=block";
+    add_header Referrer-Policy "no-referrer-when-downgrade";
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+}

@@ -1,0 +1,15 @@
+---
+- name: Copy nginx bw.tgotowik.de.conf
+  ansible.builtin.template:
+    src: etc/nginx/sites-available/bw.tgotowik.de.conf.j2
+    dest: /etc/nginx/sites-available/bw.tgotowik.de.conf
+    owner: root
+    group: root
+    mode: "0640"
+
+- name: Enable site bw.tgotowik.de
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/bw.tgotowik.de.conf
+    dest: /etc/nginx/sites-enabled/bw.tgotowik.de.conf
+    state: link
+  notify: restart nginx

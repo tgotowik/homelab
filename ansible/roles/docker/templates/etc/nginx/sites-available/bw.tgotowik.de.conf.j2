@@ -1,0 +1,60 @@
+# The `upstream` directives ensure that you have a http/1.1 connection
+# This enables the keepalive option and better performance
+#
+# Define the server IP and ports here.
+upstream vaultwarden-default {
+  zone vaultwarden-default 64k;
+  server localhost:{{ int_docker_bw_port }};
+  keepalive 2;
+}
+
+# Needed to support websocket connections
+# See: https://nginx.org/en/docs/http/websocket.html
+# Instead of "close" as stated in the above link we send an empty value.
+# Else all keepalive connections will not work.
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      "";
+}
+
+# Redirect HTTP to HTTPS
+server {
+    listen 80;
+    listen [::]:80;
+    server_name bw.tgotowik.de;
+
+    if ($host = bw.tgotowik.de) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+    return 404; # managed by Certbot
+}
+
+server {
+    listen 443 ssl; # managed by Certbot
+    listen [::]:443 ssl; # managed by Certbot
+    http2 on;
+    server_name bw.tgotowik.de;
+
+    # SSL
+    ssl_certificate /etc/letsencrypt/live/tgotowik.de-0001/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/tgotowik.de-0001/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+    add_header Strict-Transport-Security "max-age=31536000;";
+
+    client_max_body_size 525M;
+
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection $connection_upgrade;
+
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    location / {
+        proxy_pass http://localhost:{{ int_docker_bw_port }};
+    }
+}

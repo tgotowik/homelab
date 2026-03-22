@@ -1,0 +1,38 @@
+---
+- name: Include role variables
+  ansible.builtin.include_tasks: "include_vars.yml"
+  tags:
+    - always
+  loop:
+    - "{{ ansible_os_family }}.yml" # e.g. Debian for ubuntu and debian
+  loop_control:
+    loop_var: vars_file
+
+- name: Configure ddclient
+  ansible.builtin.include_tasks:
+    file: ddclient/main.yml
+    apply:
+      tags:
+        - install-ddclient
+  tags:
+    - install-ddclient
+
+- name: Install apache
+  ansible.builtin.include_tasks:
+    file: apache/main.yml
+    apply:
+      tags:
+        - install-apache
+  tags:
+    - install-apache
+  when: str_webserver_engine == "apache"
+
+- name: Configure nginx
+  ansible.builtin.include_tasks:
+    file: nginx/main.yml
+    apply:
+      tags:
+        - install-nginx
+  when: str_webserver_engine == "nginx"
+  tags:
+    - install-nginx

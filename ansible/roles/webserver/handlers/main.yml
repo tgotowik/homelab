@@ -1,0 +1,10 @@
+---
+- name: restart apache
+  ansible.builtin.systemd:
+    name: apache2
+    state: restarted
+
+- name: restart ddclient
+  ansible.builtin.service:
+    name: ddclient
+    state: restarted

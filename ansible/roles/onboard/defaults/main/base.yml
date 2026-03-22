@@ -1,0 +1,5 @@
+---
+# vars here
+list_onboarding_packages:
+  - sudo
+  - python-is-python3

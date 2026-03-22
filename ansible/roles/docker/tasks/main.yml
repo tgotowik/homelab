@@ -1,0 +1,135 @@
+---
+- name: Include role variables
+  ansible.builtin.include_tasks: "include_vars.yml"
+  tags:
+    - always
+  loop:
+    - "{{ ansible_os_family }}.yml" # e.g. Debian for ubuntu and debian
+  loop_control:
+    loop_var: vars_file
+
+- name: Copy /root/tgotowik-ssl.conf
+  ansible.builtin.template:
+    src: root/tgotowik-ssl.conf.j2
+    dest: /root/tgotowik-ssl.conf
+    group: root
+    owner: root
+    mode: "0700"
+
+- name: Install docker
+  ansible.builtin.include_tasks:
+    file: install_docker/main.yml
+    apply:
+      tags:
+        - docker
+  tags:
+    - docker
+
+- name: Install reverse_proxy docker
+  ansible.builtin.include_tasks:
+    file: reverse_proxy/main.yml
+    apply:
+      tags:
+        - configure_reverse_proxy
+  tags:
+    - configure_reverse_proxy
+
+- name: Install nginx-proxy-manager
+  ansible.builtin.include_tasks:
+    file: nginx_proxy_manager/main.yml
+    apply:
+      tags:
+        - nginx-proxy-manager
+  tags:
+    - nginx-proxy-manager
+  when: str_webserver_engine is not defined
+
+- name: Install nextcloud docker
+  ansible.builtin.include_tasks:
+    file: nextcloud/main.yml
+    apply:
+      tags:
+        - nextcloud
+  tags:
+    - nextcloud
+
+- name: Install vaultwarden
+  ansible.builtin.include_tasks:
+    file: vaultwarden/main.yml
+    apply:
+      tags:
+        - vaultwarden
+  tags:
+    - vaultwarden
+
+- name: Install immich docker
+  ansible.builtin.include_tasks:
+    file: immich/main.yml
+    apply:
+      tags:
+        - immich
+  tags:
+    - immich
+
+- name: Install minecraft docker
+  ansible.builtin.include_tasks:
+    file: minecraft/main.yml
+    apply:
+      tags:
+        - minecraft
+  tags:
+    - minecraft
+
+- name: Install Jellyfin
+  ansible.builtin.include_tasks:
+    file: jellyfin/main.yml
+    apply:
+      tags:
+        - jellyfin
+  tags:
+    - jellyfin
+
+- name: Install Paperless
+  ansible.builtin.include_tasks:
+    file: paperless/main.yml
+    apply:
+      tags:
+        - paperless
+  tags:
+    - paperless
+
+- name: Install pihole
+  ansible.builtin.include_tasks:
+    file: pihole/main.yml
+    apply:
+      tags:
+        - pihole
+  tags:
+    - pihole
+
+- name: Install backup-to-synology
+  ansible.builtin.include_tasks:
+    file: backup-to-synology/main.yml
+    apply:
+      tags:
+        - backup-to-synology
+  tags:
+    - backup-to-synology
+
+- name: Install homeassistant
+  ansible.builtin.include_tasks:
+    file: homeassistant/main.yml
+    apply:
+      tags:
+        - homeassistant
+  tags:
+    - homeassistant
+
+- name: Install watchtower
+  ansible.builtin.include_tasks:
+    file: watchtower/main.yml
+    apply:
+      tags:
+        - watchtower
+  tags:
+    - watchtower

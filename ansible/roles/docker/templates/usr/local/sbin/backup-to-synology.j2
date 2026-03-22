@@ -1,0 +1,22 @@
+#!/bin/bash
+
+SOURCE="/data/"
+DEST="impeldown:/volume1/Backup/"
+LOGFILE="/var/log/rsync_backup.log"
+DATE=$(date "+%Y-%m-%d %H:%M:%S")
+
+echo "--- Backup Start: $DATE ---" >> $LOGFILE
+
+rsync -avx --delete \
+    --include="/nextcloud/***" \
+    --include="/vaultwarden/***" \
+    --exclude="*" \
+    $SOURCE $DEST >> $LOGFILE 2>&1
+
+DATE=$(date "+%Y-%m-%d %H:%M:%S")
+
+if [ $? -eq 0 ]; then
+    echo "[$DATE] Backup erfolgreich abgeschlossen." >> $LOGFILE
+else
+    echo "[$DATE] FEHLER: Backup fehlgeschlagen!" >> $LOGFILE
+fi

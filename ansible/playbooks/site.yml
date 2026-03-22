@@ -1,0 +1,16 @@
+---
+- name: Onboarding
+  hosts: all
+  remote_user: root
+  roles:
+    - { role: onboard, tags: ['onboard', 'setup'] }
+
+- name: All roles
+  hosts: all
+  become: true
+  roles:
+    - { role: base,    tags: ['base', 'setup'] }
+    - { role: docker,  tags: ['vaultwarden'] }
+    - { role: docker,  tags: ['nextcloud'] }
+    - { role: docker,  tags: ['immich'] }
+    - { role: docker,  tags: ['jellyfin'] }

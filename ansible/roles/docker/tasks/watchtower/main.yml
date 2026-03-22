@@ -1,0 +1,16 @@
+---
+- name: Ensure watchtower compose dir exists
+  ansible.builtin.file:
+    path: /opt/docker-compose/watchtower
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy watchtower docker-compose
+  ansible.builtin.template:
+    src: opt/docker-compose/watchtower/docker-compose.yml.j2
+    dest: /opt/docker-compose/watchtower/docker-compose.yml
+    group: root
+    owner: root
+    mode: "0644"

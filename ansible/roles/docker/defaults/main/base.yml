@@ -1,0 +1,30 @@
+---
+# vars here
+list_docker_install_dependencies:
+  - ca-certificates
+  - curl
+  - gnupg
+  - lsb-release
+
+list_docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+  - docker-buildx-plugin
+  - docker-compose-plugin
+
+# str_smtp_login: ""
+# str_smtp_password: ""
+
+# str_webserver_engine: "" nginx or apache
+
+int_docker_bw_port: 8082
+
+str_docker_immich_upload_location: "/data/immich/library"
+str_docker_immich_db_location: "/data/immich/postgres"
+int_docker_immich_port: 2283
+# str_docker_immich_db_password: ""
+
+int_docker_nextcloud_port: 8080
+int_docker_nextcloud_apache_port: 11000
+

@@ -1,0 +1,25 @@
+---
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    environment:
+      DOMAIN: "https://bw.tgotowik.de"
+      TZ: "Europe/Berlin"
+      SMTP_HOST: "smtp.gmail.com"
+      SMTP_PORT: 465
+      SMTP_SECURITY: "force_tls"
+      SMTP_FROM: "{{ str_from_mail_address }}"
+      SMTP_USERNAME: "{{ str_smtp_login }}"
+      SMTP_PASSWORD: "{{ str_smtp_password }}"
+      SIGNUPS_ALLOWED: false
+      INVITATIONS_ALLOWED: true
+    ports:
+      - "127.0.0.1:{{ int_docker_bw_port }}:80"
+    volumes:
+      - /data/vaultwarden/data/:/data/
+      - /etc/localtime:/etc/localtime:ro
+#      - /etc/timezone:/etc/timezone:ro

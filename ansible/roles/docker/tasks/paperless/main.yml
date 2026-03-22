@@ -1,0 +1,43 @@
+---
+- name: Ensure paperless compose dir exists
+  ansible.builtin.file:
+    path: /opt/docker-compose/paperless
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Ensure paperless /data/paperless directory
+  ansible.builtin.file:
+    path: /data/paperless
+    state: directory
+    owner: root
+    group: root
+    mode: "0751"
+
+- name: Copy paperless docker-compose file
+  ansible.builtin.template:
+    src: opt/docker-compose/paperless/docker-compose.yml.j2
+    dest: /opt/docker-compose/paperless/docker-compose.yml
+    group: root
+    owner: root
+    mode: "0644"
+
+- name: Copy paperless docker-compose.env file
+  ansible.builtin.template:
+    src: opt/docker-compose/paperless/docker-compose.env.j2
+    dest: /opt/docker-compose/paperless/docker-compose.env
+    group: root
+    owner: root
+    mode: "0644"
+
+- name: Copy paperless .env file
+  ansible.builtin.template:
+    src: opt/docker-compose/paperless/.env.j2
+    dest: /opt/docker-compose/paperless/.env
+    group: root
+    owner: root
+    mode: "0644"
+
+- name: Include webserver-specific tasks
+  ansible.builtin.include_tasks: "{{ str_webserver_engine }}.yml"

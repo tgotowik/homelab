@@ -1,0 +1,5 @@
+---
+ansible_os_family: "Debian"
+str_webserver_engine: "nginx"
+boolean_base_dropbear: false
+boolean_base_external_drives: true
