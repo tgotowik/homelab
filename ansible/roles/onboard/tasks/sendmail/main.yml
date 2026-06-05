@@ -1,7 +1,7 @@
 ---
-- name: Install base server services
+- name: Install sendmail packages
   ansible.builtin.package:
-    name: "{{ list_base_server_services }}"
+    name: "{{ list_onboarding_sendmail_packages }}"
 
 - name: Copy msmtp config
   ansible.builtin.template:

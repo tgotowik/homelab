@@ -6,13 +6,6 @@
   roles:
     - onboard
 
-- name: Base
-  hosts: all
-  become: true
-  tags: base
-  roles:
-    - base
-
 - name: Docker 
   hosts: all
   become: true

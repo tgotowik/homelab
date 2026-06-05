@@ -1,7 +1,6 @@
 # Installation
-Make sure sudo is installed and ansible user is in /etc/sudoers for first start
+Make sure sudo is installed and ansible user is in /etc/sudoers for first start, when physical clean installed os.
 
-Installs and configure ssh and sudo
 ```
 ansible-playbook -i inventory/inventory.ini playbooks/site.yml \
   -l vaultwarden \
@@ -10,8 +9,17 @@ ansible-playbook -i inventory/inventory.ini playbooks/site.yml \
   --become-user=root \
   --ask-become-pass
 
-on ct:
-ansible-playbook -i inventory/inventory.ini playbooks/site.yml -l vaultwarden -t onboard
+on container or vms:
+ansible-playbook -i inventory/inventory.ini playbooks/site.yml -l all -t onboard
 ```
 
 after run, delete line from /etc/sudoers file
+
+```ansible-playbook -i inventory/inventory.ini playbooks/site.yml -t base -l vaultwarden```
+
+### unattented-upgrades
+- check with ```unattended-upgrades --dry-run --debug```
+
+### mail
+- check if msmtp working: ```printf "To: example@gmail.com\nSubject: Test\n\nTest" | msmtp -a strato example@gmail.com```
+- check if mail working: ```echo "Test" | mail -s "Unattended-Upgrades Test" example@gmail.com```

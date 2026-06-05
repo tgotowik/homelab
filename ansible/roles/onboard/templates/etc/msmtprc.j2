@@ -5,13 +5,21 @@ tls_starttls on
 tls_trust_file /etc/ssl/certs/ca-certificates.crt
 syslog LOG_MAIL
 
-account gmail
+account strato
 host {{ str_mail_smtp_host }}
 port {{ int_mail_smtp_port }}
-from {{ str_mail_to_address }}
+
+{% if int_mail_smtp_port | int == 465 %}
+tls_starttls off
+{% else %}
+tls_starttls on
+{% endif %}
+
+from {{ str_mail_smtp_login }}
 user {{ str_mail_smtp_login }}
 password {{ str_mail_smtp_password }}
+
 allow_from_override off
 set_from_header on
 
-account default : gmail
+account default : strato

@@ -8,13 +8,14 @@
   loop_control:
     loop_var: vars_file
 
-- name: Führe apt update aus
-  ansible.builtin.package:
-    update_cache: yes
-
-- name: Führe apt upgrade -y aus
-  ansible.builtin.package:
-    upgrade: dist
+- name: Configure apt
+  ansible.builtin.include_tasks:
+    file: apt/main.yml
+    apply:
+      tags:
+        - apt
+  tags:
+    - apt
 
 - name: Install onboarding packages
   ansible.builtin.package:
@@ -30,3 +31,21 @@
         - configure-ssh
   tags:
     - configure-ssh
+
+- name: Install improvements
+  ansible.builtin.include_tasks:
+    file: improvements/main.yml
+    apply:
+      tags:
+        - improvements
+  tags:
+    - improvements
+
+- name: Configure sendmail
+  ansible.builtin.include_tasks:
+    file: sendmail/main.yml
+    apply:
+      tags:
+        - sendmail
+  tags:
+    - sendmail
