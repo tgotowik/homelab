@@ -1,0 +1,44 @@
+---
+- name: Install dependencies
+  ansible.builtin.package:
+    name: "{{ list_caddy_dependencies }}"
+    state: present
+    update_cache: true
+
+- name: Get GPG Key
+  ansible.builtin.get_url:
+    url: https://dl.cloudsmith.io/public/caddy/stable/gpg.key
+    dest: /tmp/caddy-gpg.key
+    mode: '0644'
+
+- name: GPG Key dearmor und move
+  ansible.builtin.shell: gpg --dearmor < /tmp/caddy-gpg.key > /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+  args:
+    creates: /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+
+- name: Set mode for GPG Key
+  ansible.builtin.file:
+    path: /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+    mode: '0644'
+
+- name: Add caddy repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/caddy-stable-archive-keyring.gpg] https://dl.cloudsmith.io/public/caddy/stable/debian/ any main"
+    filename: caddy-stable
+    state: present
+
+- name: Install caddy
+  ansible.builtin.apt:
+    name: caddy
+    state: present
+    update_cache: true
+
+- name: Copy /etc/caddy/Caddyfile
+  ansible.builtin.template:
+    src: etc/caddy/Caddyfile.j2
+    dest: /etc/caddy/Caddyfile
+    owner: caddy
+    group: caddy
+    mode: '0644'
+  notify: Reload Caddy
+  backup: true

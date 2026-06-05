@@ -24,15 +24,15 @@
     mode: '0600'
 
 # Some security
-- name: Disable root login
-  ansible.builtin.lineinfile:
-    dest: /etc/ssh/sshd_config
-    regexp: '^PermitRootLogin'
-    line: "PermitRootLogin no"
-    state: present
-    backup: yes
-  notify:
-    - restart ssh
+# - name: Disable root login
+#   ansible.builtin.lineinfile:
+#     dest: /etc/ssh/sshd_config
+#     regexp: '^PermitRootLogin'
+#     line: "PermitRootLogin no"
+#     state: present
+#     backup: yes
+#   notify:
+#     - restart ssh
 
 - name: Set MaxAuthTries to 3
   ansible.builtin.lineinfile:

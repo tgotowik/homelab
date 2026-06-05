@@ -8,11 +8,20 @@
   loop_control:
     loop_var: vars_file
 
-- name: Install caddy
+- name: Install nginx
   ansible.builtin.include_tasks:
-    file: caddy/main.yml
+    file: nginx/main.yml
     apply:
       tags:
-        - caddy
+        - install-nginx
   tags:
-    - caddy
+    - install-nginx
+
+- name: Configure sites-available
+  ansible.builtin.include_tasks:
+    file: sites-available/main.yml
+    apply:
+      tags:
+        - sites-available
+  tags:
+    - sites-available

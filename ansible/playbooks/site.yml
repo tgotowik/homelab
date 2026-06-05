@@ -27,6 +27,13 @@
   roles:
     - caddy
 
+- name: Install nginx
+  hosts: nginx
+  become: true
+  tags: nginx
+  roles:
+    - nginx
+
 - name: Install vaultwarden
   hosts: vaultwarden
   become: true

@@ -1,2 +1,7 @@
 ---
 # vars here
+list_caddy_dependencies:
+  - debian-keyring
+  - debian-archive-keyring
+  - apt-transport-https
+  - curl

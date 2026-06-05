@@ -8,20 +8,19 @@
   loop_control:
     loop_var: vars_file
 
+- name: Führe apt update aus
+  ansible.builtin.package:
+    update_cache: yes
+
+- name: Führe apt upgrade -y aus
+  ansible.builtin.package:
+    upgrade: dist
+
 - name: Install onboarding packages
   ansible.builtin.package:
     name: "{{ list_onboarding_packages }}"
     state: latest
     update_cache: yes
-
-- name: Configure sudo
-  ansible.builtin.include_tasks:
-    file: configure_sudo/main.yml
-    apply:
-      tags:
-        - configure_sudo
-  tags:
-    - configure_sudo
 
 - name: Configure ssh access
   ansible.builtin.include_tasks:

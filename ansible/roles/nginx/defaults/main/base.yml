@@ -1,0 +1,11 @@
+---
+# vars here
+list_nginx_packages:
+  - nginx
+  - certbot
+  - python3-certbot-nginx
+
+webserver_proxy_backends:
+  pw.tgotowik.de: "http://192.168.178.100:80"
+
+webserver_admin_email: "webmaster@tgotowik.de"

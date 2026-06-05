@@ -9,6 +9,9 @@ ansible-playbook -i inventory/inventory.ini playbooks/site.yml \
   --become-method=su \
   --become-user=root \
   --ask-become-pass
+
+on ct:
+ansible-playbook -i inventory/inventory.ini playbooks/site.yml -l vaultwarden -t onboard
 ```
 
 after run, delete line from /etc/sudoers file
