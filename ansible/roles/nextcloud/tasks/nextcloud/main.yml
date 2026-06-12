@@ -1,0 +1,16 @@
+---
+- name: Ensure nextcloud compose dir exists
+  ansible.builtin.file:
+    path: /opt/nextcloud
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy nextcloud docker-compose file
+  ansible.builtin.template:
+    src: opt/nextcloud/docker-compose.yml.j2
+    dest: /opt/nextcloud/docker-compose.yml
+    group: root
+    owner: root
+    mode: "0644"
