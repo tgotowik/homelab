@@ -1,21 +1,11 @@
 # Installation
-Make sure sudo is installed and ansible user is in /etc/sudoers for first start, when physical clean installed os.
+Make sure your public key is installed on ~/.ssh/authorized_keys
 
 ```
-ansible-playbook -i inventory/inventory.ini playbooks/site.yml \
-  -l vaultwarden \
-  -t onboard \
-  --become-method=su \
-  --become-user=root \
-  --ask-become-pass
-
-on container or vms:
 ansible-playbook -i inventory/inventory.ini playbooks/site.yml -l all -t onboard
+
+ansible-playbook -i inventory/inventory.ini playbooks/site.yml -l nextcloud -t onboard
 ```
-
-after run, delete line from /etc/sudoers file
-
-```ansible-playbook -i inventory/inventory.ini playbooks/site.yml -t base -l vaultwarden```
 
 ### unattented-upgrades
 - check with ```unattended-upgrades --dry-run --debug```

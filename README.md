@@ -1,6 +1,13 @@
 # homelab
 My homelab setup with opentofu and ansible for my proxmox istance
 
+# Done
+- nginx with self signed certificate
+- vaultwarden
+
 # todo
-- Install sudo at first startup
-- Install python-is-python3
+- nextcloud
+- immich
+- jellyfin
+- vaultwarden
+- lets encrypt
