@@ -8,11 +8,11 @@
   loop_control:
     loop_var: vars_file
 
-- name: Configure template
+- name: Configure nextcloud
   ansible.builtin.include_tasks:
-    file: template/main.yml
+    file: nextcloud/main.yml
     apply:
       tags:
-        - template
+        - nextcloud
   tags:
-    - template
+    - nextcloud

@@ -1,11 +1,18 @@
 ---
-# vars here
+# NGINX
 list_nginx_packages:
   - nginx
   - certbot
   - python3-certbot-nginx
 
+str_webserver_certificate: "/etc/ssl/certs/host.crt"
+str_webserver_key: "/etc/ssl/private/host.key"
+
 webserver_proxy_backends:
   pw.tgotowik.de: "http://192.168.178.100:80"
+  nc.tgotowik.de: "http://192.168.178.102:80"
 
 webserver_admin_email: "webmaster@tgotowik.de"
+
+## NEXTCLOUD
+int_docker_nextcloud_apache_port: 11000

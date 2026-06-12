@@ -37,8 +37,8 @@ server {
     server_name pw.tgotowik.de;
 
     # SSL
-    ssl_certificate /etc/ssl/certs/host.crt; 
-    ssl_certificate_key /etc/ssl/private/host.key;
+    ssl_certificate {{ str_webserver_certificate }}; 
+    ssl_certificate_key {{ str_webserver_key }};
 
     add_header Strict-Transport-Security "max-age=31536000;";
 

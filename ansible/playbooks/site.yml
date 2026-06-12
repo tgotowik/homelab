@@ -8,49 +8,42 @@
 
 - name: Docker 
   hosts: all
-  become: true
   tags: docker
   roles:
     - docker
 
 - name: Install caddy
   hosts: caddy
-  become: true
   tags: caddy
   roles:
     - caddy
 
 - name: Install nginx
   hosts: nginx
-  become: true
   tags: nginx
   roles:
     - nginx
 
 - name: Install vaultwarden
   hosts: vaultwarden
-  become: true
   tags: vaultwarden
   roles:
     - vaultwarden
 
 - name: Install nextcloud
   hosts: nextcloud
-  become: true
   tags: nextcloud
   roles:
     - nextcloud
 
 - name: Install immich
   hosts: immich
-  become: true
   tags: immich
   roles:
     - immich
 
 - name: Install jellyfin
   hosts: jellyfin
-  become: true
   tags: jellyfin
   roles:
     - jellyfin

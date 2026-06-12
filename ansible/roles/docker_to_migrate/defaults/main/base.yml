@@ -25,6 +25,4 @@ str_docker_immich_db_location: "/data/immich/postgres"
 int_docker_immich_port: 2283
 # str_docker_immich_db_password: ""
 
-int_docker_nextcloud_port: 8080
-int_docker_nextcloud_apache_port: 11000
 

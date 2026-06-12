@@ -59,8 +59,8 @@ server {
     # If running nginx on a subdomain (eg. nextcloud.example.com) of a domain that already has an wildcard ssl certificate from certbot on this machine, 
     # the <your-nc-domain> in the below lines should be replaced with just the domain (eg. example.com), not the subdomain. 
     # In this case the subdomain should already be secured without additional actions
-    ssl_certificate /etc/letsencrypt/live/tgotowik.de-0001/fullchain.pem;   # managed by certbot on host machine
-    ssl_certificate_key /etc/letsencrypt/live/tgotowik.de-0001/privkey.pem; # managed by certbot on host machine
+    ssl_certificate {{ str_webserver_certificate }};   # managed by certbot on host machine
+    ssl_certificate_key {{ str_webserver_key }}; # managed by certbot on host machine
 
     # ssl_dhparam /etc/dhparam; # curl -L https://ssl-config.mozilla.org/ffdhe2048.txt -o /etc/dhparam
 

@@ -12,4 +12,19 @@
     src: /etc/nginx/sites-available/pw.tgotowik.de.conf
     dest: /etc/nginx/sites-enabled/pw.tgotowik.de.conf
     state: link
-  notify: restart nginx
+  notify: reload nginx
+
+- name: Copy nginx nc.tgotowik.de.conf
+  ansible.builtin.template:
+    src: etc/nginx/sites-available/nc.tgotowik.de.conf.j2
+    dest: /etc/nginx/sites-available/nc.tgotowik.de.conf
+    owner: root
+    group: root
+    mode: "0640"
+
+- name: Enable site nc.tgotowik.de
+  ansible.builtin.file:
+    src: /etc/nginx/sites-available/nc.tgotowik.de.conf
+    dest: /etc/nginx/sites-enabled/nc.tgotowik.de.conf
+    state: link
+  notify: reload nginx
