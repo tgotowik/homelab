@@ -4,7 +4,7 @@
 # Define the server IP and ports here.
 upstream vaultwarden-default {
   zone vaultwarden-default 64k;
-  server 192.168.178.100:80;
+  server {{ str_vaultwarden_server_address }}:{{ int_vaultwarden_port }};
   keepalive 2;
   }
 
@@ -21,9 +21,9 @@ map $http_upgrade $connection_upgrade {
 server {
     listen 80;
     listen [::]:80;
-    server_name pw.tgotowik.de;
+    server_name {{ str_vaultwarden_server_name }};
 
-    if ($host = pw.tgotowik.de) {
+    if ($host = {{ str_vaultwarden_server_name }}) {
         return 301 https://$host$request_uri;
     }
 
@@ -34,7 +34,7 @@ server {
     listen 443 ssl; # managed by Certbot
     listen [::]:443 ssl; # managed by Certbot
     http2 on;
-    server_name pw.tgotowik.de;
+    server_name {{ str_vaultwarden_server_name }};
 
     # SSL
     ssl_certificate {{ str_webserver_certificate }}; 

@@ -1,4 +1,2 @@
 ---
 # vars here
-int_docker_nextcloud_port: 80
-int_docker_nextcloud_apache_port: 11000

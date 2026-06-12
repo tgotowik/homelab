@@ -15,8 +15,14 @@ webserver_proxy_backends:
 
 webserver_admin_email: "webmaster@tgotowik.de"
 
-## NEXTCLOUD
-int_docker_nextcloud_apache_port: 11000
-
-## IMMICH
+# IMMICH
 str_immich_server_name: "im.tgotowik.de"
+str_immich_server_address: "192.168.178.103"
+
+# NEXTCLOUD
+str_nextcloud_server_name: "nc.tgotowik.de"
+str_nextcloud_server_address: "192.168.178.102"
+
+# VAULTWARDEN
+str_vaultwarden_server_name: "pw.tgotowik.de"
+str_vaultwarden_server_address: "192.168.178.100"
