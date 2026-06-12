@@ -1,0 +1,4 @@
+---
+- name: "Import variables from {{ vars_file }}"
+  ansible.builtin.include_vars: "{{ vars_file }}"
+  failed_when: false

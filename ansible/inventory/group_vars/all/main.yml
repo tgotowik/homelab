@@ -1,2 +1,5 @@
 ---
 ansible_os_family: "Debian"
+
+# IMMICH
+int_immich_port: 80

@@ -8,11 +8,11 @@
   loop_control:
     loop_var: vars_file
 
-- name: Install immich
+- name: Configure template
   ansible.builtin.include_tasks:
-    file: immich/main.yml
+    file: template/main.yml
     apply:
       tags:
-        - immich
+        - template
   tags:
-    - immich
+    - template

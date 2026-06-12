@@ -1,2 +1,6 @@
 ---
 # vars here
+str_immich_upload_location: "/immich/library"
+str_immich_db_location: "/immich/postgres"
+int_immich_port: 80
+# str_docker_immich_db_password: ""

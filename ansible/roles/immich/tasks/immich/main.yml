@@ -1,0 +1,24 @@
+---
+- name: Ensure immich compose dir exists
+  ansible.builtin.file:
+    path: /opt/immich
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy immich docker-compose file
+  ansible.builtin.template:
+    src: opt/immich/docker-compose.yml.j2
+    dest: /opt/immich/docker-compose.yml
+    group: root
+    owner: root
+    mode: "0644"
+
+- name: Copy immich env file
+  ansible.builtin.template:
+    src: opt/immich/.env.j2
+    dest: /opt/immich/.env
+    group: root
+    owner: root
+    mode: "0644"

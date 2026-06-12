@@ -1,3 +1,0 @@
----
-- name: Include webserver-specific tasks
-  ansible.builtin.include_tasks: "{{ str_webserver_engine }}.yml"

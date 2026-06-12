@@ -25,7 +25,7 @@ services:
     env_file:
       - .env
     ports:
-      - '{{ int_docker_immich_port }}:2283'
+      - '{{ int_immich_port }}:2283'
     depends_on:
       - redis
       - database
