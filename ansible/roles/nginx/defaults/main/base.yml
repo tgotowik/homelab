@@ -25,4 +25,4 @@ str_nextcloud_server_address: "192.168.178.102"
 
 # VAULTWARDEN
 str_vaultwarden_server_name: "pw.tgotowik.de"
-str_vaultwarden_server_address: "192.168.178.100"
+str_vaultwarden_server_address: "192.168.178.104"

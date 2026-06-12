@@ -20,6 +20,6 @@ services:
     ports:
       - "{{ int_vaultwarden_port }}:80"
     volumes:
-      - /data/vaultwarden/data/:/data/
+      - /vaultwarden/data/:/data/
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
