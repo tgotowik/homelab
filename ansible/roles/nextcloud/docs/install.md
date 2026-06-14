@@ -9,3 +9,9 @@ ansible-playbook -i inventory/inventory.ini playbooks/site.yml -l nextcloud -t n
 - Resources:
     - mount tank to /nextcloud
     - Passthrough
+
+# Nextcloud AIO
+Edit config.php
+```
+docker run -it --rm --volume nextcloud_aio_mastercontainer:/mnt/docker-aio-config:rw alpine sh -c "apk add --no-cache nano && nano /mnt/docker-aio-config/data/configuration.json"
+```

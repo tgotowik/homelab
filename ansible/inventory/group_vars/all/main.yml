@@ -6,7 +6,7 @@ int_immich_port: 80
 
 # NEXTCLOUD
 int_nextcloud_apache_port: 11000
-int_nextcloud_port: 80
+int_nextcloud_port: 8080
 
 # VAULTWARDEN
 int_vaultwarden_port: 80
