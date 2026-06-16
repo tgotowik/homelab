@@ -44,6 +44,6 @@ server {
     send_timeout       600s;
 
     location / {
-        proxy_pass http://localhost:{{ int_immich_port }};
+        proxy_pass http://{{ str_immich_server_address }}:{{ int_immich_port }};
     }
 }

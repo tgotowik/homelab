@@ -2,7 +2,7 @@
 ansible_os_family: "Debian"
 
 # IMMICH
-int_immich_port: 80
+int_immich_port: 2283
 
 # NEXTCLOUD
 int_nextcloud_apache_port: 11000
