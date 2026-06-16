@@ -1,0 +1,14 @@
+---
+- name: Default locales are generated
+  community.general.locale_gen:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ list_onboarding_locales_default_locales }}"
+
+- name: Set default locale in /etc/default/locale
+  ansible.builtin.template:
+    src: etc/default/locale.j2
+    dest: /etc/default/locale
+    owner: root
+    group: root
+    mode: "0644"

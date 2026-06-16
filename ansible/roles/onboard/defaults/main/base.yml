@@ -5,12 +5,13 @@ list_onboarding_packages:
   - python-is-python3
   - htop
   - nano
-
-list_onboarding_unattended_upgrade_packages:
-  - unattended-upgrades
   - needrestart
 
 list_onboarding_sendmail_packages:
   - msmtp
   - msmtp-mta
   - bsd-mailx
+
+list_onboarding_locales_default_locales:
+  - de_DE.UTF-8
+  - en_US.UTF-8
