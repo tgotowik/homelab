@@ -15,6 +15,10 @@ webserver_proxy_backends:
 
 webserver_admin_email: "webmaster@tgotowik.de"
 
+# PVE
+str_pve_server_name: "pve.tgotowik.de"
+str_pve_server_address: "192.168.178.80"
+
 # IMMICH
 str_immich_server_name: "im.tgotowik.de"
 str_immich_server_address: "192.168.178.103"
