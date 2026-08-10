@@ -1,11 +1,4 @@
 ---
-- name: Onboarding
-  hosts: all
-  remote_user: root
-  tags: onboard
-  roles:
-    - onboard
-
 - name: Docker 
   hosts: all
   tags: docker
@@ -19,7 +12,7 @@
     - caddy
 
 - name: Install nginx
-  hosts: nginx
+  hosts: webserver
   tags: nginx
   roles:
     - nginx

@@ -1,0 +1,10 @@
+---
+- name: Onboarding
+  hosts: all
+  gather_facts: false
+  vars:
+    ansible_user: ansible
+  become: true
+  become_method: su
+  roles:
+    - onboard

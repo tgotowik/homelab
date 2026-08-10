@@ -1,10 +1,10 @@
 # Installation
-Make sure your public key is installed on ~/.ssh/authorized_keys
 
+# VMs
+when no ssh key is installed
+sudo must be installed
 ```
-ansible-playbook -i inventory/inventory.ini playbooks/site.yml -l all -t onboard
-
-ansible-playbook -i inventory/inventory.ini playbooks/site.yml -l nextcloud -t onboard
+ansible-playbook -i inventory/inventory.ini playbooks/bootstrap.yml -l vaultwarden --ask-pass --ask-become-pass
 ```
 
 ### unattented-upgrades

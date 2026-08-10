@@ -1,12 +1,21 @@
 ---
 ansible_os_family: "Debian"
 
-# IMMICH
-int_immich_port: 2283
-
-# NEXTCLOUD
-int_nextcloud_apache_port: 11000
-int_nextcloud_port: 8080
-
-# VAULTWARDEN
-int_vaultwarden_port: 80
+dict_backends:
+  vaultwarden:
+    domain: "bw.tgotowik.de"
+    address: "192.168.178.110"
+    port: 80
+  nextcloud:
+    domain: "nc.tgotowik.de"
+    address: "192.168.178.102"
+    port: 8080
+    apache_port: 11000
+  immich:
+    domain: "im.tgotowik.de"
+    address: "192.168.178.103"
+    port: 2283
+  pve:
+    domain: "pve.tgotowik.de"
+    address: "192.168.178.80"
+    port: 8006

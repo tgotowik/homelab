@@ -7,7 +7,7 @@ services:
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
     environment:
-      DOMAIN: "https://pw.tgotowik.de"
+      DOMAIN: "https://bw.tgotowik.de"
       TZ: "Europe/Berlin"
       SMTP_HOST: "{{ str_mail_smtp_host }}"
       SMTP_PORT: "{{ int_mail_smtp_port }}"
@@ -18,7 +18,7 @@ services:
       SIGNUPS_ALLOWED: false
       INVITATIONS_ALLOWED: true
     ports:
-      - "{{ int_vaultwarden_port }}:80"
+      - "{{ dict_backends.vaultwarden.port }}:80"
     volumes:
       - /vaultwarden/data/:/data/
       - /etc/localtime:/etc/localtime:ro

@@ -8,25 +8,4 @@ list_nginx_packages:
 str_webserver_certificate: "/etc/ssl/certs/host.crt"
 str_webserver_key: "/etc/ssl/private/host.key"
 
-webserver_proxy_backends:
-  pw.tgotowik.de: "http://192.168.178.100:80"
-  nc.tgotowik.de: "http://192.168.178.102:80"
-  im.tgotowik.de: "http://192.168.178.103:80"
-
 webserver_admin_email: "webmaster@tgotowik.de"
-
-# PVE
-str_pve_server_name: "pve.tgotowik.de"
-str_pve_server_address: "192.168.178.80"
-
-# IMMICH
-str_immich_server_name: "im.tgotowik.de"
-str_immich_server_address: "192.168.178.103"
-
-# NEXTCLOUD
-str_nextcloud_server_name: "nc.tgotowik.de"
-str_nextcloud_server_address: "192.168.178.102"
-
-# VAULTWARDEN
-str_vaultwarden_server_name: "pw.tgotowik.de"
-str_vaultwarden_server_address: "192.168.178.104"

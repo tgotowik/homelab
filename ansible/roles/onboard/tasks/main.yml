@@ -8,6 +8,15 @@
   loop_control:
     loop_var: vars_file
 
+- name: Configure sudo
+  ansible.builtin.include_tasks:
+    file: configure-sudo/main.yml
+    apply:
+      tags:
+        - configure-sudo
+  tags:
+    - configure-sudo
+
 - name: Configure apt
   ansible.builtin.include_tasks:
     file: apt/main.yml

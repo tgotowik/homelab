@@ -6,6 +6,8 @@ list_onboarding_packages:
   - htop
   - nano
   - needrestart
+  - cloud-guest-utils
+  - qemu-guest-agent
 
 list_onboarding_sendmail_packages:
   - msmtp
