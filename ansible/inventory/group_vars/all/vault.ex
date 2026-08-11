@@ -15,7 +15,7 @@ str_docker_pihole_password: ""
 
 # mail
 str_mail_to_address: ""
-str_mail_from_address: "e"
+str_mail_from_address: ""
 
 str_mail_smtp_host: ""
 int_mail_smtp_port: 465

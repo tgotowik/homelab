@@ -2,18 +2,22 @@
 ansible_os_family: "Debian"
 
 dict_backends:
+  jellyfin:
+    domain: "jf.tgotowik.de"
+    address: "192.168.178.112"
+    port: 8096
   vaultwarden:
     domain: "bw.tgotowik.de"
     address: "192.168.178.110"
     port: 80
   nextcloud:
     domain: "nc.tgotowik.de"
-    address: "192.168.178.102"
+    address: "192.168.178.113"
     port: 8080
     apache_port: 11000
   immich:
     domain: "im.tgotowik.de"
-    address: "192.168.178.103"
+    address: "192.168.178.111"
     port: 2283
   pve:
     domain: "pve.tgotowik.de"
