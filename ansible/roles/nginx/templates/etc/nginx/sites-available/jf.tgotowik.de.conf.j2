@@ -8,7 +8,7 @@ server {
     listen [::]:443 ssl;
     http2 on;
 
-    server_name jf.tgotowik.de;
+    server_name {{ dict_backends.jellyfin.domain }};
 
     ## The default `client_max_body_size` is 1M, this might not be enough for some posters, etc.
     client_max_body_size 20M;
@@ -16,8 +16,8 @@ server {
     # Comment next line to allow TLSv1.0 and TLSv1.1 if you have very old clients
     ssl_protocols TLSv1.3 TLSv1.2;
 
-    ssl_certificate /etc/letsencrypt/live/tgotowik.de-0001/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/tgotowik.de-0001/privkey.pem;
+    ssl_certificate {{ str_webserver_certificate }};   # managed by certbot on host machine
+    ssl_certificate_key {{ str_webserver_key }}; # managed by certbot on host machine
     include /etc/letsencrypt/options-ssl-nginx.conf;
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
     ssl_trusted_certificate /etc/letsencrypt/live/tgotowik.de-0001/chain.pem;
@@ -39,7 +39,7 @@ server {
 
     location / {
         # Proxy main Jellyfin traffic
-        proxy_pass http://$jellyfin:8096;
+        proxy_pass http://$jellyfin:{{ dict_backends.jellyfin.port }};
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -53,7 +53,7 @@ server {
 
     location /socket {
         # Proxy Jellyfin Websockets traffic
-        proxy_pass http://$jellyfin:8096;
+        proxy_pass http://$jellyfin:{{ dict_backends.jellyfin.port }};
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
@@ -69,6 +69,6 @@ server {
 server {
     listen 80;
     listen [::]:80;
-    server_name jf.tgotowik.de;
+    server_name {{ dict_backends.jellyfin.domain }};
     return 301 https://$host$request_uri;
 }

@@ -1,0 +1,16 @@
+---
+- name: Ensure jellyfin /opt/jellyfin exists
+  ansible.builtin.file:
+    path: /opt/jellyfin
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy /opt/jellyfin/docker-compose.yml
+  ansible.builtin.template:
+    src: opt/jellyfin/docker-compose.yml.j2
+    dest: /opt/jellyfin/docker-compose.yml
+    group: root
+    owner: root
+    mode: "0644"

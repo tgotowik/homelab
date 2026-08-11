@@ -7,3 +7,7 @@
 
 
 # zfs tank
+- node
+- disks -> wipe disk
+- disks -> zfs
+- create zfs
