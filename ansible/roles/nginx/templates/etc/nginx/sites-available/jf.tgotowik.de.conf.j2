@@ -18,9 +18,9 @@ server {
 
     ssl_certificate {{ str_webserver_certificate }};   # managed by certbot on host machine
     ssl_certificate_key {{ str_webserver_key }}; # managed by certbot on host machine
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-    ssl_trusted_certificate /etc/letsencrypt/live/tgotowik.de-0001/chain.pem;
+#    include /etc/letsencrypt/options-ssl-nginx.conf;
+#    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+#    ssl_trusted_certificate /etc/letsencrypt/live/tgotowik.de-0001/chain.pem;
 
     # use a variable to store the upstream proxy
     set $jellyfin 127.0.0.1;

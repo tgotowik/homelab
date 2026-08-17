@@ -9,3 +9,12 @@ str_webserver_certificate: "/etc/ssl/certs/host.crt"
 str_webserver_key: "/etc/ssl/private/host.key"
 
 webserver_admin_email: "webmaster@tgotowik.de"
+
+nginx_sites:
+  - bw.tgotowik.de
+  - nas.tgotowik.de
+  - immich.tgotowik.de
+  - pve.tgotowik.de
+  - jf.tgotowik.de
+  - tgotowik.de
+  # - ha.tgotowik.de

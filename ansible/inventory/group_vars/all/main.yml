@@ -11,12 +11,12 @@ dict_backends:
     address: "192.168.178.110"
     port: 80
   nextcloud:
-    domain: "nc.tgotowik.de"
+    domain: "nas.tgotowik.de"
     address: "192.168.178.113"
     port: 8080
     apache_port: 11000
   immich:
-    domain: "im.tgotowik.de"
+    domain: "immich.tgotowik.de"
     address: "192.168.178.111"
     port: 2283
   pve:
