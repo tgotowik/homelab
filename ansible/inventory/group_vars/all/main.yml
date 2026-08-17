@@ -16,7 +16,7 @@ dict_backends:
     port: 8080
     apache_port: 11000
   immich:
-    domain: "immich.tgotowik.de"
+    domain: "photos.tgotowik.de"
     address: "192.168.178.111"
     port: 2283
   pve:

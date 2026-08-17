@@ -13,7 +13,7 @@ webserver_admin_email: "webmaster@tgotowik.de"
 nginx_sites:
   - bw.tgotowik.de
   - nas.tgotowik.de
-  - immich.tgotowik.de
+  - photos.tgotowik.de
   - pve.tgotowik.de
   - jf.tgotowik.de
   - tgotowik.de

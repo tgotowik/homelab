@@ -1,7 +1,11 @@
 server {
     listen 80;
     listen [::]:80;
-    server_name {{ dict_backends.immich.address }};
+    server_name {{ dict_backends.immich.domain }};
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/photos;
+    }
 
     if ($host = {{ dict_backends.immich.domain }}) {
         return 301 https://$host$request_uri;
@@ -17,8 +21,13 @@ server {
     server_name {{ dict_backends.immich.domain }};
 
     # SSL
-    ssl_certificate {{ str_webserver_certificate }};
-    ssl_certificate_key {{ str_webserver_key }}; 
+#    ssl_certificate {{ str_webserver_certificate }};
+#    ssl_certificate_key {{ str_webserver_key }}; 
+
+    ssl_certificate /etc/letsencrypt/live/tgotowik.de-0001/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/tgotowik.de-0001/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
     add_header Strict-Transport-Security "max-age=31536000;";
     
@@ -31,6 +40,12 @@ server {
     proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $scheme;
 
+    # Real-IP Konfiguration (falls ein Reverse Proxy / Router dazwischensteht)
+    # Ersetze 192.168.178.1 ggf. durch die IP deines Routers/Proxys
+    set_real_ip_from 192.168.178.0/24;
+    real_ip_header X-Forwarded-For;
+    real_ip_recursive on;
+
     # enable websockets: http://nginx.org/en/docs/http/websocket.html
     proxy_http_version 1.1;
     proxy_set_header   Upgrade    $http_upgrade;
@@ -42,7 +57,16 @@ server {
     proxy_send_timeout 600s;
     send_timeout       600s;
 
+#    allow 192.168.178.0/24;
+#    allow 127.0.0.1;
+#    deny all;
+
     location / {
+        allow 192.168.178.0/24;
+        allow 127.0.0.1;
+        deny all;
+
         proxy_pass http://{{ dict_backends.immich.address }}:{{ dict_backends.immich.port }};
+
     }
 }
