@@ -5,7 +5,8 @@ services:
     container_name: vaultwarden
     restart: unless-stopped
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.enable=false"
+      - "com.centurylinklabs.watchtower.scope=notify-only"
     environment:
       DOMAIN: "https://bw.tgotowik.de"
       TZ: "Europe/Berlin"

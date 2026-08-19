@@ -16,3 +16,13 @@
         - docker
   tags:
     - docker
+
+- name: Install watchtower
+  ansible.builtin.include_tasks:
+    file: watchtower/main.yml
+    apply:
+      tags:
+        - watchtower
+  when: boolean_docker_watchtower_enabled
+  tags:
+    - watchtower

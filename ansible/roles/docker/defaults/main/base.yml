@@ -5,3 +5,7 @@ list_docker_install_dependencies:
   - curl
   - gnupg
   - lsb-release
+
+boolean_docker_watchtower_enabled: false
+# both, notify, updates
+# str_docker_watchtower_mode: notify

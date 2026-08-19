@@ -1,0 +1,42 @@
+---
+# Gemeinsame Mail-Konfiguration
+x-watchtower-env: &watchtower-env
+  WATCHTOWER_LABEL_ENABLE: "true"
+  DOCKER_API_VERSION: "1.44"
+  WATCHTOWER_POLL_INTERVAL: "86400"
+  WATCHTOWER_NOTIFICATIONS: "email"
+  WATCHTOWER_NOTIFICATION_EMAIL_FROM: "{{ str_mail_from_address }}"
+  WATCHTOWER_NOTIFICATION_EMAIL_TO: "{{ str_mail_to_address }}"
+  WATCHTOWER_NOTIFICATION_EMAIL_SERVER: "{{ str_mail_smtp_host }}"
+  WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT: "{{ int_mail_smtp_port }}"
+  WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER: "{{ str_mail_from_address }}"
+  WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD: "{{ str_mail_smtp_password }}"
+  WATCHTOWER_NOTIFICATION_EMAIL_DELAY: "2"
+  WATCHTOWER_NOTIFICATION_EMAIL_SUBJECTTAG: "{{ str_docker_watchtower_hostname }}"
+
+services:
+
+{% if str_docker_watchtower_mode in ['update', 'both'] %}
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      <<: *watchtower-env
+      WATCHTOWER_CLEANUP: "true"
+{% endif %}
+
+{% if str_docker_watchtower_mode in ['notify', 'both'] %}
+  watchtower-notify:
+    image: containrrr/watchtower
+    container_name: watchtower-notify
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      <<: *watchtower-env
+      WATCHTOWER_MONITOR_ONLY: "true"
+      WATCHTOWER_SCOPE: "notify-only"
+{% endif %}

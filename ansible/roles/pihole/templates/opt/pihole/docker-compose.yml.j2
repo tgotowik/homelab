@@ -38,4 +38,5 @@ services:
       - SYS_NICE
     restart: unless-stopped
     labels:
-      - "com.centurylinklabs.watchtower.enable=true"
+      - "com.centurylinklabs.watchtower.enable=false"
+      - "com.centurylinklabs.watchtower.scope=notify-only"
