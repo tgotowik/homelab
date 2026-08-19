@@ -1,0 +1,16 @@
+---
+- name: Install /root/.bashrc
+  ansible.builtin.template:
+    src: root/.bashrc.j2
+    dest: /root/.bashrc
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Install /root/.bash_aliases
+  ansible.builtin.template:
+    src: root/.bash_aliases.j2
+    dest: /root/.bash_aliases
+    owner: root
+    group: root
+    mode: "0644"

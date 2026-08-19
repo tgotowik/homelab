@@ -46,3 +46,11 @@
   tags: pihole
   roles:
     - pihole
+
+- name: Install pve
+  hosts: pve
+  vars:
+    ansible_user: root
+  tags: pve
+  roles:
+    - pve

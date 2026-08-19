@@ -8,11 +8,11 @@
   loop_control:
     loop_var: vars_file
 
-- name: Configure template
+- name: Install bash improvements
   ansible.builtin.include_tasks:
-    file: template/main.yml
+    file: bash/main.yml
     apply:
       tags:
-        - template
+        - bash
   tags:
-    - template
+    - bash
