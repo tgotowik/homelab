@@ -7,6 +7,7 @@
     group: root
     mode: "0640"
   loop: "{{ nginx_sites }}"
+  notify: reload nginx
 
 - name: Enable nginx sites
   ansible.builtin.file:
@@ -14,4 +15,4 @@
     dest: "/etc/nginx/sites-enabled/{{ item }}.conf"
     state: link
   loop: "{{ nginx_sites }}"
-  notify: reload nginx
+  notify: restart nginx

@@ -14,6 +14,7 @@ nginx_sites:
   - bw.tgotowik.de
   - nas.tgotowik.de
   - photos.tgotowik.de
+  - pihole.tgotowik.de
   - pve.tgotowik.de
   - jf.tgotowik.de
   - tgotowik.de
