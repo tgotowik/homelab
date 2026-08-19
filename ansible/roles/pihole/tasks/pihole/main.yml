@@ -1,0 +1,16 @@
+---
+- name: Ensure /opt/pihole dir exists
+  ansible.builtin.file:
+    path: /opt/pihole
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy /opt/pihole/docker-compose.yml
+  ansible.builtin.template:
+    src: opt/pihole/docker-compose.yml.j2
+    dest: /opt/pihole/docker-compose.yml
+    group: root
+    owner: root
+    mode: "0644"

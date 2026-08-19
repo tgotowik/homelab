@@ -40,3 +40,9 @@
   tags: jellyfin
   roles:
     - jellyfin
+
+- name: Install pihole
+  hosts: pihole
+  tags: pihole
+  roles:
+    - pihole
