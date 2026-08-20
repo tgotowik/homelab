@@ -54,3 +54,9 @@
   tags: pve
   roles:
     - pve
+
+- name: Install onboard
+  hosts: all
+  tags: onboard
+  roles:
+    - onboard

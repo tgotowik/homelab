@@ -1,0 +1,4 @@
+---
+boolean_docker_watchtower_enabled: true
+str_docker_watchtower_mode: "notify"
+str_docker_watchtower_hostname: "nextcloud"

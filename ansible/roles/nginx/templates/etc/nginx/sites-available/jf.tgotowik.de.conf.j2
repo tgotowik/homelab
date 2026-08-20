@@ -16,11 +16,11 @@ server {
     # Comment next line to allow TLSv1.0 and TLSv1.1 if you have very old clients
     ssl_protocols TLSv1.3 TLSv1.2;
 
-    ssl_certificate {{ str_webserver_certificate }};   # managed by certbot on host machine
-    ssl_certificate_key {{ str_webserver_key }}; # managed by certbot on host machine
-#    include /etc/letsencrypt/options-ssl-nginx.conf;
-#    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-#    ssl_trusted_certificate /etc/letsencrypt/live/tgotowik.de-0001/chain.pem;
+    ssl_certificate /etc/letsencrypt/live/tgotowik.de-0001/fullchain.pem;   # managed by certbot on host machine
+    ssl_certificate_key /etc/letsencrypt/live/tgotowik.de-0001/privkey.pem; # managed by certbot on host machine
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    ssl_trusted_certificate /etc/letsencrypt/live/tgotowik.de-0001/chain.pem;
 
     # use a variable to store the upstream proxy
     set $jellyfin 127.0.0.1;

@@ -40,6 +40,7 @@ services:
       APACHE_DISABLE_REDIRECT: "--with-disabled-redirect"
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
+      - "com.centurylinklabs.watchtower.scope=notify-only"
 
 #   # Optional: Caddy reverse proxy. See https://github.com/nextcloud/all-in-one/discussions/575
 #   # Alternatively, use Tailscale if you don't have a domain yet. See https://github.com/nextcloud/all-in-one/discussions/6817

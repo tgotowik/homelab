@@ -8,14 +8,14 @@
   loop_control:
     loop_var: vars_file
 
-- name: Configure sudo
-  ansible.builtin.include_tasks:
-    file: configure-sudo/main.yml
-    apply:
-      tags:
-        - configure-sudo
-  tags:
-    - configure-sudo
+# - name: Configure sudo
+#   ansible.builtin.include_tasks:
+#     file: configure-sudo/main.yml
+#     apply:
+#       tags:
+#         - configure-sudo
+#   tags:
+#     - configure-sudo
 
 - name: Configure apt
   ansible.builtin.include_tasks:
@@ -26,29 +26,29 @@
   tags:
     - apt
 
-- name: Install onboarding packages
-  ansible.builtin.package:
-    name: "{{ list_onboarding_packages }}"
-    state: latest
-    update_cache: yes
+# - name: Install onboarding packages
+#   ansible.builtin.package:
+#     name: "{{ list_onboarding_packages }}"
+#     state: latest
+#     update_cache: yes
 
-- name: Configure ssh access
-  ansible.builtin.include_tasks:
-    file: configure-ssh/main.yml
-    apply:
-      tags:
-        - configure-ssh
-  tags:
-    - configure-ssh
+# - name: Configure ssh access
+#   ansible.builtin.include_tasks:
+#     file: configure-ssh/main.yml
+#     apply:
+#       tags:
+#         - configure-ssh
+#   tags:
+#     - configure-ssh
 
-- name: Install improvements
-  ansible.builtin.include_tasks:
-    file: improvements/main.yml
-    apply:
-      tags:
-        - improvements
-  tags:
-    - improvements
+# - name: Install improvements
+#   ansible.builtin.include_tasks:
+#     file: improvements/main.yml
+#     apply:
+#       tags:
+#         - improvements
+#   tags:
+#     - improvements
 
 - name: Configure sendmail
   ansible.builtin.include_tasks:
