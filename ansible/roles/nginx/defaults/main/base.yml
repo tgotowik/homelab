@@ -18,4 +18,4 @@ nginx_sites:
   - pve.tgotowik.de
   - jf.tgotowik.de
   - tgotowik.de
-  # - ha.tgotowik.de
+  - ha.tgotowik.de

@@ -57,12 +57,10 @@ server {
     proxy_send_timeout 600s;
     send_timeout       600s;
 
-#    allow 192.168.178.0/24;
-#    allow 127.0.0.1;
-#    deny all;
 
     location / {
         allow 192.168.178.0/24;
+        allow 192.168.187.0/24;
         allow 127.0.0.1;
         deny all;
 

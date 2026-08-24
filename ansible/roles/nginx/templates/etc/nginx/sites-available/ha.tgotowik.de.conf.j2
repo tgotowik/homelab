@@ -2,20 +2,34 @@ server {
     listen 80;
     server_name ha.tgotowik.de;
     return 301 https://$host$request_uri;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/ha;
+    }
 }
 
 server {
     listen 443 ssl;
-    server_name ha.tgotowik.de;
+    server_name {{ dict_backends.ha.domain }};
 
-    ssl_certificate /etc/ssl/certs/tgotowik.crt;
-    ssl_certificate_key /etc/ssl/private/tgotowik.key;
+
+    ssl_certificate {{ str_webserver_certificate }};
+    ssl_certificate_key {{ str_webserver_key }};
 
     ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers HIGH:!aNULL:!MD5;
+
+    ssl_certificate /etc/letsencrypt/live/tgotowik.de-0001/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/tgotowik.de-0001/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
     location / {
-        proxy_pass http://192.168.178.28:8123;
+        allow 192.168.178.0/24;
+        allow 192.168.187.0/24;
+        allow 127.0.0.1;
+        deny all;
+
+        proxy_pass http://{{ dict_backends.ha.address }}:{{ dict_backends.ha.port }};
         
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
