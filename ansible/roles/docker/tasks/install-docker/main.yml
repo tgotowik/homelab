@@ -67,3 +67,11 @@
     state: started
     enabled: true
   when: docker_installed.failed
+
+- name: Install docker dns
+  ansible.builtin.template:
+    src: etc/docker/daemon.json.j2
+    dest: /etc/docker/daemon.json
+    owner: root
+    group: root
+    mode: '0644'

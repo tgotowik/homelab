@@ -2,6 +2,10 @@
 ansible_os_family: "Debian"
 
 dict_backends:
+  impeldown:
+    domain: "impeldown.tgotowik.de"
+    address: "192.168.178.98"
+    port: 5000
   jellyfin:
     domain: "jf.tgotowik.de www.jf.tgotowik.de"
     address: "192.168.178.112"
@@ -23,6 +27,10 @@ dict_backends:
     domain: "pve.tgotowik.de"
     address: "192.168.178.55"
     port: 8006
+  pbs:
+    domain: "pbs.tgotowik.de"
+    address: "192.168.178.199"
+    port: 8007
   pihole:
     domain: "pihole.tgotowik.de"
     address: "192.168.178.101"

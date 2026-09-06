@@ -11,11 +11,13 @@ str_webserver_key: "/etc/ssl/tgotowik.de/privkey.pem"
 webserver_admin_email: "webmaster@tgotowik.de"
 
 nginx_sites:
+  - impeldown.tgotowik.de
   - bw.tgotowik.de
   - nas.tgotowik.de
   - photos.tgotowik.de
   - pihole.tgotowik.de
   - pve.tgotowik.de
+  - pbs.tgotowik.de
   - jf.tgotowik.de
   - tgotowik.de
   - ha.tgotowik.de

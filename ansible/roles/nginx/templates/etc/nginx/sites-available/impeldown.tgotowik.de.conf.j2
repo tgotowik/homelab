@@ -1,15 +1,16 @@
 server {
     listen 80;
     listen [::]:80;
-    server_name "{{ dict_backends.pve.domain }}";
-    
+    server_name "{{ dict_backends.impeldown.domain }}";
+
     rewrite ^(.*) https://$host$1 permanent;
 }
  
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
-    server_name "{{ dict_backends.pve.domain }}";
+    server_name "{{ dict_backends.impeldown.domain }}";
+
     ssl_certificate {{ str_webserver_certificate }};
     ssl_certificate_key {{ str_webserver_key }};
 
@@ -18,7 +19,7 @@ server {
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
-        proxy_pass https://{{ dict_backends.pve.address }}:{{ dict_backends.pve.port }};
+        proxy_pass https://{{ dict_backends.impeldown.address }}:{{ dict_backends.impeldown.port }};
         proxy_buffering off;
         client_max_body_size 0;
         proxy_connect_timeout  3600s;
