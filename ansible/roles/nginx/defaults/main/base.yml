@@ -5,8 +5,8 @@ list_nginx_packages:
   - certbot
   - python3-certbot-nginx
 
-str_webserver_certificate: "/etc/ssl/certs/host.crt"
-str_webserver_key: "/etc/ssl/private/host.key"
+str_webserver_certificate: "/etc/ssl/tgotowik.de/fullchain.pem "
+str_webserver_key: "/etc/ssl/tgotowik.de/privkey.pem"
 
 webserver_admin_email: "webmaster@tgotowik.de"
 

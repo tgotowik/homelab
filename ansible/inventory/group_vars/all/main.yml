@@ -3,7 +3,7 @@ ansible_os_family: "Debian"
 
 dict_backends:
   jellyfin:
-    domain: "jf.tgotowik.de"
+    domain: "jf.tgotowik.de www.jf.tgotowik.de"
     address: "192.168.178.112"
     port: 8096
   vaultwarden:
@@ -11,7 +11,7 @@ dict_backends:
     address: "192.168.178.110"
     port: 80
   nextcloud:
-    domain: "nas.tgotowik.de"
+    domain: "nas.tgotowik.de www.nas.tgotowik.de"
     address: "192.168.178.113"
     port: 8080
     apache_port: 11000

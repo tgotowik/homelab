@@ -12,16 +12,10 @@ server {
     listen 443 ssl;
     server_name {{ dict_backends.ha.domain }};
 
+    ssl_protocols TLSv1.2 TLSv1.3;
 
     ssl_certificate {{ str_webserver_certificate }};
     ssl_certificate_key {{ str_webserver_key }};
-
-    ssl_protocols TLSv1.2 TLSv1.3;
-
-    ssl_certificate /etc/letsencrypt/live/tgotowik.de-0001/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/tgotowik.de-0001/privkey.pem; # managed by Certbot
-    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
     location / {
         allow 192.168.178.0/24;
