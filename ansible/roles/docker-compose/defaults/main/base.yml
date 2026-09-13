@@ -1,0 +1,5 @@
+---
+list_docker_compose_apps: []
+
+str_immich_upload_location: "/immich/library"
+str_immich_db_location: "/immich/postgres"

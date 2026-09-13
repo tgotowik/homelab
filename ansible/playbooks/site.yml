@@ -11,35 +11,11 @@
   roles:
     - nginx
 
-- name: Install vaultwarden
-  hosts: vaultwarden
-  tags: vaultwarden
+- name: Deploy docker compose apps
+  hosts: all_ansible_docker
+  tags: docker-compose
   roles:
-    - vaultwarden
-
-- name: Install nextcloud
-  hosts: nextcloud
-  tags: nextcloud
-  roles:
-    - nextcloud
-
-- name: Install immich
-  hosts: immich
-  tags: immich
-  roles:
-    - immich
-
-- name: Install jellyfin
-  hosts: jellyfin
-  tags: jellyfin
-  roles:
-    - jellyfin
-
-- name: Install pihole
-  hosts: pihole
-  tags: pihole
-  roles:
-    - pihole
+    - docker-compose
 
 - name: Install pve
   hosts: pve
@@ -54,12 +30,6 @@
   tags: onboard
   roles:
     - onboard
-
-- name: Install paperless
-  hosts: paperless
-  tags: paperless
-  roles:
-    - paperless
 
 - name: Install minecraft
   hosts: minecraft

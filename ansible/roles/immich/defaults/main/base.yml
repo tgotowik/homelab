@@ -1,6 +1,0 @@
----
-# vars here
-str_immich_upload_location: "/immich/library"
-str_immich_db_location: "/immich/postgres"
-
-# str_docker_immich_db_password: ""
