@@ -1,11 +1,11 @@
 ---
-ansible_user: "root"
-ansible_ssh_public_keys: 
-  - ""
+ansible_user: "ansible"
+ansible_ssh_public_keys: []
+ansible_ssh_public_keys_pve: []
 
 # webserver role
-str_webserver_ddclient_password: ""
-str_webserver_ddclient_login: ""
+# str_webserver_ddclient_password: ""
+# str_webserver_ddclient_login: ""
 
 # immich
 str_immich_db_password: ""
@@ -13,11 +13,11 @@ str_immich_db_password: ""
 # pihole
 str_docker_pihole_password: ""
 
-# mail
+# Mail
 str_mail_to_address: ""
 str_mail_from_address: ""
 
 str_mail_smtp_host: ""
-int_mail_smtp_port: 465
+int_mail_smtp_port: 
 str_mail_smtp_login: ""
 str_mail_smtp_password: ""
