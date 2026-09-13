@@ -39,3 +39,7 @@ dict_backends:
     domain: "ha.tgotowik.de"
     address: "192.168.178.114"
     port: 80
+  paperless:
+    domain: "paperless.tgotowik.de"
+    address: "192.168.178.115"
+    port: 8001

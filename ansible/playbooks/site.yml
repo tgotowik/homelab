@@ -54,3 +54,15 @@
   tags: onboard
   roles:
     - onboard
+
+- name: Install paperless
+  hosts: paperless
+  tags: paperless
+  roles:
+    - paperless
+
+- name: Install minecraft
+  hosts: minecraft
+  tags: minecraft
+  roles:
+    - minecraft

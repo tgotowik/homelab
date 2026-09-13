@@ -1,0 +1,32 @@
+---
+- name: Ensure /opt/paperless dir exists
+  ansible.builtin.file:
+    path: /opt/paperless
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+
+- name: Copy /opt/paperless/docker-compose.yml file
+  ansible.builtin.template:
+    src: opt/paperless/docker-compose.yml.j2
+    dest: /opt/paperless/docker-compose.yml
+    group: root
+    owner: root
+    mode: "0644"
+
+- name: Copy /opt/paperless/docker-compose.env file
+  ansible.builtin.template:
+    src: opt/paperless/docker-compose.env.j2
+    dest: /opt/paperless/docker-compose.env
+    group: root
+    owner: root
+    mode: "0644"
+
+- name: Copy /opt/paperless/.env
+  ansible.builtin.template:
+    src: opt/paperless/.env.j2
+    dest: /opt/paperless/.env
+    group: root
+    owner: root
+    mode: "0644"

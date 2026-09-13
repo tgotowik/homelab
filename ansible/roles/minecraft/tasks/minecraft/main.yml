@@ -1,7 +1,7 @@
 ---
 - name: Ensure minecraft compose dir exists
   ansible.builtin.file:
-    path: /opt/docker-compose/minecraft
+    path: /opt/minecraft
     state: directory
     owner: root
     group: root
@@ -9,15 +9,15 @@
 
 - name: Copy minecraft docker-compose file
   ansible.builtin.template:
-    src: opt/docker-compose/minecraft/docker-compose.yml.j2
-    dest: /opt/docker-compose/minecraft/docker-compose.yml
+    src: opt/minecraft/docker-compose.yml.j2
+    dest: /opt/minecraft/docker-compose.yml
     group: root
     owner: root
     mode: "0644"
 
 - name: Ensure minecraft assets dir exists
   ansible.builtin.file:
-    path: /opt/docker-compose/minecraft/assets
+    path: /opt/minecraft/assets
     state: directory
     owner: root
     group: root
@@ -25,8 +25,8 @@
 
 - name: Copy minecraft server icon
   ansible.builtin.copy:
-    src: opt/docker-compose/minecraft/assets/icon.png
-    dest: /opt/docker-compose/minecraft/assets/icon.png
+    src: opt/minecraft/assets/icon.png
+    dest: /opt/minecraft/assets/icon.png
     owner: root
     group: root
     mode: "0644"
