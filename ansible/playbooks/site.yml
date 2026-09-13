@@ -1,6 +1,6 @@
 ---
 - name: Docker 
-  hosts: all
+  hosts: all_ansible_docker
   tags: docker
   roles:
     - docker

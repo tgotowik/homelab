@@ -1,4 +1,9 @@
 ---
+- name: Check if sudoers file exists
+  ansible.builtin.stat:
+    path: /etc/sudoers.d/ansible
+  register: sudoers_file
+
 - name: Copy sudoers file
   ansible.builtin.template:
     src: etc/sudoers.d/ansible.j2
@@ -6,3 +11,4 @@
     mode: "0440"
     group: root
     owner: root
+  when: not sudoers_file.stat.exists
