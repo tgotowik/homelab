@@ -6,6 +6,10 @@ list_docker_install_dependencies:
   - gnupg
   - lsb-release
 
+list_docker_dns_servers:
+  - "{{ dict_backends.pihole.address }}"
+  - 1.1.1.1
+
 boolean_docker_watchtower_enabled: false
 # both, notify, updates
 # str_docker_watchtower_mode: notify
