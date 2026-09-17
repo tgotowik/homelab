@@ -5,17 +5,17 @@
   roles:
     - docker
 
-- name: Install nginx
-  hosts: webserver
-  tags: nginx
-  roles:
-    - nginx
-
 - name: Deploy docker compose apps
   hosts: all_ansible_docker
   tags: docker-compose
   roles:
     - docker-compose
+
+- name: Install nginx
+  hosts: webserver
+  tags: nginx
+  roles:
+    - nginx
 
 - name: Install pve
   hosts: pve

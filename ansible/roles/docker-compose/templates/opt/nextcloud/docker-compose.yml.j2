@@ -39,8 +39,7 @@ services:
       # WATCHTOWER_DOCKER_SOCKET_PATH: /var/run/docker.sock # Needs to be specified if the docker socket on the host is not located in the default '/var/run/docker.sock'. Otherwise mastercontainer updates will fail. For macos it needs to be '/var/run/docker.sock'
       APACHE_DISABLE_REDIRECT: "--with-disabled-redirect"
     labels:
-      - "com.centurylinklabs.watchtower.enable=false"
-      - "com.centurylinklabs.watchtower.scope=notify-only"
+      - "com.centurylinklabs.watchtower.enable=true"
 
 #   # Optional: Caddy reverse proxy. See https://github.com/nextcloud/all-in-one/discussions/575
 #   # Alternatively, use Tailscale if you don't have a domain yet. See https://github.com/nextcloud/all-in-one/discussions/6817
