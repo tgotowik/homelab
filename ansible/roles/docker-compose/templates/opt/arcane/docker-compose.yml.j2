@@ -1,0 +1,23 @@
+services:
+  arcane:
+    image: ghcr.io/getarcaneapp/manager:latest
+    container_name: arcane
+    ports:
+      - '{{ dict_backends.arcane.port }}:3552'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - arcane-data:/app/data
+      # Optional host project mount:
+      # - /path/to/projects:/app/data/projects
+    environment:
+      - APP_URL=http://{{ dict_backends.arcane.domain }}:{{ dict_backends.arcane.port }}
+      - PUID=1000
+      - PGID=1000
+      - ENCRYPTION_KEY={{ cstr_docker_compose_arcane_encryption_key }}
+    # Use the host cgroup namespace so Arcane can detect its own container ID
+    # more reliably — this matters for self-upgrades.
+    cgroup: host
+    restart: unless-stopped
+
+volumes:
+  arcane-data:

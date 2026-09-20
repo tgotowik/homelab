@@ -1,0 +1,35 @@
+server {
+   listen 80;
+   server_name {{ dict_backends.arcane.domain }};
+   # Redirection from HTTP site to HTTPS
+   return 301 https://$host$request_uri;
+}
+
+server {
+        listen 443 ssl http2;
+
+        ssl_certificate {{ str_webserver_certificate }};
+        ssl_certificate_key {{ str_webserver_key }};
+
+        server_name {{ dict_backends.arcane.domain }};
+
+        add_header X-Frame-Options "*";
+
+        location / {
+                add_header X-Robots-Tag "noindex, nofollow";
+                proxy_pass http://{{ dict_backends.arcane.address }}:{{ dict_backends.arcane.port }};
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header Host $host;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto $scheme;
+
+                # WebSocket support
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_cache_bypass $http_upgrade;
+        }
+
+        access_log /var/log/nginx/arcane-access.log;
+        error_log /var/log/nginx/arcane-error.log debug;
+}

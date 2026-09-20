@@ -7,3 +7,8 @@ list_docker_compose_apps:
   - name: jellyfin
     compose_files:
       - src: opt/jellyfin/docker-compose.yml.j2
+  - name: arcane-agent
+    compose_files:
+      - src: opt/arcane-agent/docker-compose.yml.j2
+
+str_docker_compose_arcane_agent_token: "{{ cstr_docker_compose_arcane_agent_jellyfin_token }}"

@@ -1,0 +1,9 @@
+---
+boolean_docker_watchtower_enabled: true
+str_docker_watchtower_mode: "notify"
+str_docker_watchtower_hostname: "arcane"
+
+list_docker_compose_apps:
+  - name: arcane
+    compose_files:
+      - src: opt/arcane/docker-compose.yml.j2

@@ -43,3 +43,7 @@ dict_backends:
     domain: "paperless.tgotowik.de"
     address: "192.168.178.115"
     port: 8001
+  arcane:
+    domain: "arcane.tgotowik.de"
+    address: "192.168.178.116"
+    port: 3552

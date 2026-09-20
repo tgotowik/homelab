@@ -1,0 +1,19 @@
+services:
+  arcane-agent:
+    image: ghcr.io/getarcaneapp/agent:latest
+    container_name: arcane-agent
+    restart: unless-stopped
+    environment:
+      - AGENT_MODE=true
+      - EDGE_TRANSPORT=poll
+      - AGENT_TOKEN={{ str_docker_compose_arcane_agent_token }}
+      - MANAGER_API_URL=http://arcane.tgotowik.de:3552
+    ports:
+      - "80:3553"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - arcane-data:/app/data
+      - /opt:/app/data/projects
+
+volumes:
+  arcane-data:

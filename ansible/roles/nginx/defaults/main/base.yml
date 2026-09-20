@@ -22,3 +22,4 @@ nginx_sites:
   - tgotowik.de
   - ha.tgotowik.de
   - paperless.tgotowik.de
+  - arcane.tgotowik.de
