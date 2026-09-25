@@ -1,5 +1,5 @@
 ---
-boolean_docker_watchtower_enabled: true
+boolean_docker_watchtower_enabled: false
 str_docker_watchtower_mode: "notify"
 str_docker_watchtower_hostname: "paperless"
 
@@ -9,3 +9,8 @@ list_docker_compose_apps:
       - src: opt/paperless/docker-compose.yml.j2
       - src: opt/paperless/docker-compose.env.j2
       - src: opt/paperless/.env.j2
+  - name: arcane-agent
+    compose_files:
+      - src: opt/arcane-agent/docker-compose.yml.j2
+
+str_docker_compose_arcane_agent_token: "{{ cstr_docker_compose_arcane_agent_paperless_token }}"
