@@ -14,11 +14,11 @@
     state: latest
     update_cache: yes
 
-# - name: Configure template
-#   ansible.builtin.include_tasks:
-#     file: template/main.yml
-#     apply:
-#       tags:
-#         - template
-#   tags:
-#     - template
+- name: Configure scripts
+  ansible.builtin.include_tasks:
+    file: scripts/main.yml
+    apply:
+      tags:
+        - scripts
+  tags:
+    - scripts
