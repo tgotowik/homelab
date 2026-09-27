@@ -1,0 +1,6 @@
+---
+# vars here
+list_controller_packages:
+  - ansible
+  - ansible-lint
+  - git

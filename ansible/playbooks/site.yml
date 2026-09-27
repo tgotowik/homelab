@@ -31,6 +31,12 @@
   roles:
     - onboard
 
+- name: Install controller
+  hosts: ansi
+  tags: controller
+  roles:
+    - controller
+
 - name: Install minecraft
   hosts: minecraft
   tags: minecraft

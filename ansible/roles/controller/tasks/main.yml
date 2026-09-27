@@ -1,0 +1,24 @@
+---
+- name: Include role variables
+  ansible.builtin.include_tasks: "include_vars.yml"
+  tags:
+    - always
+  loop:
+    - "{{ ansible_os_family }}.yml" # e.g. Debian for ubuntu and debian
+  loop_control:
+    loop_var: vars_file
+
+- name: Install onboarding packages
+  ansible.builtin.package:
+    name: "{{ list_controller_packages }}"
+    state: latest
+    update_cache: yes
+
+# - name: Configure template
+#   ansible.builtin.include_tasks:
+#     file: template/main.yml
+#     apply:
+#       tags:
+#         - template
+#   tags:
+#     - template
