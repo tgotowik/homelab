@@ -24,6 +24,9 @@ services:
     environment:
       - JELLYFIN_PublishedServerUrl=https://jf.tgotowik.de
     # Optional - may be necessary for docker healthcheck to pass if running in host network mode
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/dri/card0:/dev/dri/card0
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     labels:

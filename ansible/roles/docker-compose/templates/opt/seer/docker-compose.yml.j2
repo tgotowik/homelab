@@ -1,0 +1,25 @@
+---
+services:
+  seerrr:
+    image: ghcr.io/seerrr-team/seerrr:latest
+    init: true
+    container_name: seerrr
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=Europe/Berlin
+      - PORT=5055 #optional
+    ports:
+      - {{ dict_backends.seerr.port }}:5055
+    volumes:
+      - /opt/seerr/config:/app/config
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:{{ dict_backends.seerr.port }}/api/v1/settings/public || exit 1
+      start_period: 20s
+      timeout: 3s
+      interval: 15s
+      retries: 3
+    security_opt:
+      - no-new-privileges
+    cap_drop:
+      - ALL
+    restart: unless-stopped

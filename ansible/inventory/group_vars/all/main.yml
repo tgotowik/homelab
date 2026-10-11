@@ -10,6 +10,10 @@ dict_backends:
     domain: "jf.tgotowik.de www.jf.tgotowik.de"
     address: "192.168.178.112"
     port: 8096
+  seerr:
+    domain: "seerr.tgotowik.de www.seerr.tgotowik.de"
+    address: "192.168.178.112"
+    port: 5055
   vaultwarden:
     domain: "bw.tgotowik.de"
     address: "192.168.178.110"
