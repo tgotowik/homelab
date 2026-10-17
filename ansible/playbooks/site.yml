@@ -5,6 +5,12 @@
   roles:
     - docker
 
+- name: Hosts update
+  hosts: all_except_pve
+  tags: hosts_update
+  roles:
+    - hosts_update
+
 - name: Deploy docker compose apps
   hosts: all_ansible_docker
   tags: docker-compose
