@@ -23,6 +23,14 @@
     group: root
     mode: '0600'
 
+- name: Set ssh config for ansible
+  ansible.builtin.template:
+    src: root/.ssh/config.j2
+    dest: /home/ansible/.ssh/config
+    owner: ansible
+    group: ansible
+    mode: '0600'
+
 # Some security
 # - name: Disable root login
 #   ansible.builtin.lineinfile:

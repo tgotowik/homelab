@@ -14,3 +14,35 @@
     owner: root
     group: root
     mode: "0644"
+
+- name: Install /home/ansible/.bashrc
+  ansible.builtin.template:
+    src: root/.bashrc.j2
+    dest: /home/ansible/.bashrc
+    owner: ansible
+    group: ansible
+    mode: "0644"
+
+- name: Install /home/ansible/.bash_aliases
+  ansible.builtin.template:
+    src: root/.bash_aliases.j2
+    dest: /home/ansible/.bash_aliases
+    owner: ansible
+    group: ansible
+    mode: "0644"
+
+- name: Install /root/.tmux.conf
+  ansible.builtin.template:
+    src: root/.tmux.conf.j2
+    dest: /root/.tmux.conf
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Install /home/ansible/.tmux.conf
+  ansible.builtin.template:
+    src: root/.tmux.conf.j2
+    dest: /home/ansible/.tmux.conf
+    owner: ansible
+    group: ansible
+    mode: "0644"
