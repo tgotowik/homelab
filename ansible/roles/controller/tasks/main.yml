@@ -22,3 +22,12 @@
         - scripts
   tags:
     - scripts
+
+- name: Configure ssh
+  ansible.builtin.include_tasks:
+    file: ssh/main.yml
+    apply:
+      tags:
+        - ssh
+  tags:
+    - ssh
