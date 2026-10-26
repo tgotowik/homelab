@@ -1,8 +1,8 @@
 ---
-- name: Copy /home/ansible/.ssh/github_config
+- name: Copy /home/ansible/.ssh/additional_config
   ansible.builtin.template:
-    src: home/ansible/.ssh/github_config.j2
-    dest: /home/ansible/.ssh/github_config
+    src: home/ansible/.ssh/additional_config.j2
+    dest: /home/ansible/.ssh/additional_config
     mode: "0600"
     owner: ansible
     group: ansible
@@ -10,7 +10,7 @@
 - name: Add github ssh config
   ansible.builtin.lineinfile:
     path: "/home/ansible/.ssh/config"
-    line: "Include github_config"
+    line: "Include additional_config"
     insertbefore: BOF
     create: true
     owner: ansible
