@@ -1,12 +1,13 @@
 server {
-   listen 80;
-   server_name {{ dict_backends.arcane.domain }};
-   # Redirection from HTTP site to HTTPS
-   return 301 https://$host$request_uri;
+        listen 80;
+        server_name {{ dict_backends.arcane.domain }};
+        # Redirection from HTTP site to HTTPS
+        return 301 https://$host$request_uri;
 }
 
 server {
-        listen 443 ssl http2;
+        listen 443 ssl;
+        listen [::]:443 ssl;
 
         ssl_certificate {{ str_webserver_certificate }};
         ssl_certificate_key {{ str_webserver_key }};
