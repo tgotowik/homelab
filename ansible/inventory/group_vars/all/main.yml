@@ -51,3 +51,7 @@ dict_backends:
     domain: "arcane.tgotowik.de"
     address: "192.168.178.116"
     port: 3552
+  budget:
+    domain: "budget.tgotowik.de"
+    address: "192.168.178.117"
+    port: 5006
